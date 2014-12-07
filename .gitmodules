@@ -1,0 +1,3 @@
+[submodule "library/Slim"]
+	path = library/Slim
+	url = git@github.com:lherich/Slim.git
