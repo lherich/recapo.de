@@ -1,5 +1,5 @@
 # recapo.de
-A webapplication for usability testing. Recapo offers a abstracted partial formated test environment for reverse card sorting tests. These tests are also know as:
+A webapplication for usability testing. Recapo offers an abstracted and partial formated test environment for reverse card sorting tests. These tests are also know as:
 * Tree tresting
 * Card based classification evaluation
 * Inverse card sorting
