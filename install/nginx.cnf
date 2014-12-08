@@ -1,0 +1,30 @@
+# activate PHP
+location ~ \.php$
+{
+    include /etc/nginx/fastcgi_params;
+    if (-f $request_filename)
+    {
+      fastcgi_pass  127.0.0.1:9000;
+    }
+}
+
+# activate Slim
+index           index.php;
+try_files $uri $uri/ /index.php?$args;
+location /index.php
+{
+        include /etc/nginx/fastcgi_params;
+        fastcgi_pass  127.0.0.1:9000;
+}
+
+server {
+  listen          80;
+  server_name     recapo.de;
+  root            /var/www/recapo.de/web/;
+}
+
+server {
+  listen          80;
+  server_name     *.recapo.de;
+  return          301 http://recapo.de;
+}
