@@ -3,3 +3,5 @@
 
 # ignore tmp directory
 tmp/**/* 
+web/**/*
+app/**/*

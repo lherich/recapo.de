@@ -1,3 +1,6 @@
 [submodule "library/Slim"]
 	path = library/Slim
 	url = git@github.com:lherich/Slim.git
+[submodule "library/Twig"]
+	path = library/Twig
+	url = git@github.com:lherich/Twig.git
