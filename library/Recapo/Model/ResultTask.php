@@ -2,7 +2,7 @@
 /**
  * Recapo <http://recapo.de>
  *
- * @link      http://github.com/lherich/recapo
+ * @link      http://github.com/lherich/recapo.de
  * @copyright Copyright (c) 2014 Lucas Herich <info@recapo.de>
  * @license   MIT License <http://recapo.de/license>
  */
