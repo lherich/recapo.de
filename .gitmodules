@@ -4,3 +4,6 @@
 [submodule "library/Twig"]
 	path = library/Twig
 	url = git@github.com:lherich/Twig.git
+[submodule "library/Valitron"]
+	path = library/Valitron
+	url = git@github.com:lherich/Valitron.git
