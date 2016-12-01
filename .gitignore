@@ -1,7 +1,4 @@
 # ignore dot files
 *.
 
-# ignore tmp directory
-tmp/**/* 
 web/**/*
-app/**/*
