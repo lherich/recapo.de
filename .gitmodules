@@ -7,3 +7,6 @@
 [submodule "library/Valitron"]
 	path = library/Valitron
 	url = git@github.com:lherich/Valitron.git
+[submodule "library/Upload"]
+	path = library/Upload
+	url = git@github.com:lherich/Upload.git
