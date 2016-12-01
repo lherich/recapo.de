@@ -21,7 +21,7 @@ Please be aware that there is no documentation for the installation. The files m
 * Refactor ./app/ and ./web/ and add documentation for the content of both folders.
 * Add Composer, Load libraries via Composer, Upgrade libraries.
 * Add [phpdotenv](https://github.com/vlucas/phpdotenv).
-* Add a dependencies for JavaScript libraries.
+* Add a dependencies manager for JavaScript libraries.
 * Add a docker-compose.yml for local development.
 * Add tests and CI support.
 
