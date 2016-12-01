@@ -1,0 +1,210 @@
+{% include 'hooter/header.twig' %}
+
+{% include 'hooter/brand.twig' %}
+
+{% include 'hooter/flash.twig' %}
+
+<div class="container">
+    <div class="row">
+        {% if user is not null %}
+            <div class="col-xs-12 col-md-3">
+                {% include 'hooter/navigation.twig' %}
+            </div>
+
+            <div class="col-xs-12 col-md-9">
+            {% else %}
+                <div class="col-xs-12 col-md-12">
+                {% endif %}
+                <div class="row">
+                    <div class="col-md-12 column">
+                        <div class="jumbotron">
+                            <h1>
+                                Recapo
+                                <small>Erstellen, Verwalten und Durchführen von Reverse-Card-Sorting-Experimenten</small>
+                            </h1>
+                            <div class="row">
+                                <div class="col-md-8">
+
+                                    <p>
+                                        Mit Recapo optimieren Sie die Navigationsstruktur Ihrer Webseite.
+                                        <br/>Dazu bietet Recapo eine Verwaltung für Reverse-Card-Sorting-Experimente an. Diese erstellten Experimente können von Probanden in einer abstrahierten, teilformatierten Testumgebung durchgeführt werden.<br/>
+                                        <b>Recapo ist komplett kostenlos nutzbar.</b>
+                                    </p><br/><br/>
+                                </div>
+                                <div class="thumbnail col-md-4 pull-right">
+                                    <a href="{{IMG}}recapo-front-end-screenshot.png" data-toggle="lightbox" data-title="Screenshot von einem RCS-Expierment mit Recapo">
+                                        <img src="{{IMG}}recapo-front-end-screenshot-thumbnail.png" class="img-thumbnail">
+                                        <span class="glyphicon glyphicon-zoom-in pull-right btn-lg"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="text-center btn-group btn-group-justified">
+                                {% if user is null %}
+                                    <a class="btn btn-success btn-lg hidden-xs" href="{{urlFor('/registration/modal')}}" data-toggle="modal" data-target=".modalTemplate">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                        Kostenlosen Benutzeraccount registrieren</a>
+                                    <a class="btn btn-success hidden-sm hidden-md hidden-lg" href="{{urlFor('/registration/modal')}}" data-toggle="modal" data-target=".modalTemplate">
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                        Kostenlosen Benutzeraccount<br/>
+                                        registrieren</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="thumbnail">
+                            <div class="caption colored">
+                                <h3>
+                                    <a href="#Reverse-Card-Sorting-Experiment">Warum Reverse-Card-Sorting?</a>
+                                </h3>
+                                <p>
+                                    <b>Wo verstecken sich jetzt wieder Informationen zum Thema ... auf dieser Webseite?</b>
+                                    Diese und ähnliche Fragen stellen sich Besucher von Webseite trotz effizienter Suchmaschinen immer noch. Deshalb ist eine intuitive Benutzbarkeit der Navigationsstruktur für Ihre Besucher wichtig. Sodass diese die gesuchten Informationen effektiv,
+                                    effizient und zufriedenstellend erreichen können. Doch wie erstellt man eine solche Navigationsstruktur?
+                                </p>
+                                <p>
+                                    Mit Recapo können
+                                    <a href="#Reverse-Card-Sorting-Experiment" title="Was ist ein Reverse-Card-Sorting-Experiment?">
+                                        <b>Reverse-Card-Sorting-Experimenten</b>
+                                    </a>
+                                    (<a href="#Reverse-Card-Sorting-Experiment" title="Was ist ein Reverse-Card-Sorting-Experiment?">RCS-Experiment
+                                        <span class="glyphicon glyphicon-question-sign"></span>
+                                    </a>) erstellt, verwaltet und durchgeführt werden. Benötigt wird nur die zu testende Navigationsstruktur, die komfortabler im- und exportiert werden kann. Die Unterseiten innerhalb dieser Struktur, die so genannten Karten, können in Sektionen
+eingeteilt werden. Eine Sektion beinhaltet Karten und werden in der teilformatierten Testumgebung an einer bestimmten Position platziert. Beispielweise können so Navigationselemente im Fließtext einer Webseite simuliert werden. Dadurch sollen
+realistischere Testergebnisse erzielt werden.<br/>
+                                    Sämtliche Daten können komfortable im- und exportiert werden oder bequem über die Recapo Webanwendung verwaltet werden.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="thumbnail">
+                            <div class="caption colored">
+                                <h3>
+                                    <a href="#Reverse-Card-Sorting-Experiment">Recapo: Ansicht der Projektverwaltung</a>
+                                </h3>
+                                <a href="{{IMG}}recapo-back-end-screenshot.png" data-toggle="lightbox" data-title="Screenshot der Verwaltung von Projekten mit Recapo">
+                                    <img src="{{IMG}}recapo-back-end-screenshot-thumbnail.png" class="img-thumbnail">
+                                    <span class="glyphicon glyphicon-zoom-in pull-right btn-lg"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="thumbnail">
+                            <div class="caption colored">
+                                <h3>
+                                    <a href="#Reverse-Card-Sorting-Experiment">Recapo: die Testumgebung beim Durchführen eines RCS-Experiments</a>
+                                </h3>
+                            </div>
+                            <a href="{{IMG}}recapo-front-end-screenshot.png" data-toggle="lightbox" data-title="Screenshot von einem RCS-Expierment mit Recapo">
+                                <img src="{{IMG}}recapo-front-end-screenshot-thumbnail.png" class="img-thumbnail">
+                                <span class="glyphicon glyphicon-zoom-in pull-right btn-lg"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <a name="Reverse-Card-Sorting-Experiment"></a>
+                        <div class="thumbnail">
+                            <div class="caption colored">
+                                <h3>
+                                    <a href="#Reverse-Card-Sorting-Experiment">Was ist ein Reverse-Card-Sorting-Experiment?</a>
+                                </h3>
+                                <p>
+                                    Bei der Entwicklung von Webseiten ist es fast immer notwendig eine Navigationsstruktur anzubieten über die der Besucher innerhalb der Webesite navigieren kann. Das Problem beim Erstellen solch einer Struktur ist die Bennennung der einzelnen Linktexte
+                                    und die Anordnung im Navigationsbaum. Diese Linktexte für Seiten werden im folgenden als Karten bezeichnet. Einzelne Karten können weitere Unterkarten beinhalten, wodruch eine baumartige Struktur entstehen kann.<br/><br/>
+                                    Die Bezeichnung der Karten und Gliederung muss gut durchdacht werden: Sie beeinflusst maßgeblich, ob der Besucher begreifen kann, welche Informationen er beim Aufruf einer Karte finden wird.<br/><br/>
+
+                                    Zum Verständnis ein
+                                    <b>
+                                        <a href="#Beispiel-Reverse-Card-Sorting-Experiment">konkretes Beispiel für das die Linkbezeichnung und Gliederung nicht optimal
+                                            <span class="glyphicon glyphicon-link"></span>
+                                        </a>
+                                    </b>
+                                    gewählt wurde.<br/>
+                                    Durch ein
+                                    <i>Reverse-Card-Sorting-Experiment</i>
+                                    wäre es möglich gewesen bereits während der Entwicklungsphase der Webseite aus dem Beispiel die Wirkung und Bezeichnung der Karten durch Probanden zu testen. Mit Hilfe der Ergebnissen hätten so mögliche Probleme frühzeitig erkannt werden können.<br/>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <a name="Beispiel-Reverse-Card-Sorting-Experiment"></a>
+                        <div class="thumbnail">
+                            <div class="caption colored">
+                                <h3>
+                                    <a href="#Beispiel-Reverse-Card-Sorting-Experiment">Ein kurzes Beispiel</a>
+                                    <small>Wie man Linktexte besser benennen könnte.</small>
+                                </h3>
+                                <p>Zum Verständnis dazu ein Beispiel von der Seite
+                                    <i>thomann.de</i>
+                                    ein Onlineshop für Musikinstrumente, Studio-, Licht- und Beschallungstechnik. Stellen Sie sich dazu bitte vor, Sie wären auf der Suche nach einem Mikrofonständer. In der Navigation im oberen Bereich des Layouts befindet sich ein Link zu der
+                                    Unterseite mit dem Namen
+                                    <i>Recording</i>
+                                    und einer mit dem Namen
+                                    <i>Mikros</i>
+                                    (<a href="#thomann.de-Screenshot">siehe Screenshot
+                                        <span class="glyphicon glyphicon-link"></span>
+                                    </a>). Welche Karte würden Sie aufrufen? Würden Sie erwarten, dass Sie unter der Karte
+                                    <i>Mikros</i>
+                                    neben Mikrofonen auch andere Produkte finden? Oder würden Sie erwarten, dass sich unter dieser Karte nur Mikrofone befinden und somit eher die Karte
+                                    <i>Recording</i>
+                                    wählen, die als Überbegriff von Mikrofonen und auch Mikrofonständern aufgefasst werden könnte?<br/></p>
+                                <div class="thumbnail">
+                                    <a href="{{IMG}}thomann.de-screenshot.png" data-toggle="lightbox" data-title="Screenshot der Navigation vom Onlineshop thomann.de, August 2014">
+                                        <img src="{{IMG}}thomann.de-screenshot-thumbnail.png" class="img-thumbnail">
+                                        <span class="glyphicon glyphicon-zoom-in pull-right btn-lg"></span>
+                                    </a>
+                                    <div class="caption">
+                                        <h6>Screenshot der Navigation vom Onlineshop
+                                            <i>thomann.de</i>, August 2014</h6>
+                                    </div>
+                                </div>
+                                <p>Nach dem Aufruf der Karten stellte sich heraus das Mikrofonständer weder unter
+                                    <i>Recording</i>
+                                    noch unter
+                                    <i>Mirkos</i>
+                                    zu finden sind, sondern über ein Dropdown Menü mit dem Namen
+                                    <i>Weitere</i>
+                                    und dort unter der Karte
+                                    <i>Zubehör</i>
+                                    zu erreichen sind. Sinnvoller könnte es sein, dem nach Mikrofonständern suchenden Besucher, einzelne Karten für Aufnahmegeräte, Wiedergabegeräte etc. anzubieten und die Mikrofone und Mikrofonständer unter der Karte Aufnahmegeräte einzuordnen.<br/><br/>
+                                    Durch ein RCS-Experiment können solche Missverständnisse beim zukünftigen Besucher aufgedeckt werden, die auch durch ein hohes Maß an kognitiver Empathie vom Webseitenerstellers teilweise nicht wahr genommen werden können.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <a name="Ablauf-Reverse-Card-Sorting-Experiment"></a>
+                        <div class="thumbnail ">
+                            <div class="caption colored">
+                                <h3>
+                                    <a href="#Ablauf-Reverse-Card-Sorting-Experiment">Wie läuft ein Reverse-Card-Sorting-Experiment ab?</a>
+                                </h3>
+                                <p>
+                                    Um ein
+                                    <i>Reverse-Card-Sorting-Experiment</i>
+                                    durchzuführen bedarf es der bereits ausgearbeiteten Navigationsarchitektur der Webseite. Dass heißt, die Bezeichnung der einzelnen Karten und die Anordnung innerhalb der Baumstruktur muss gegeben sein. Diese Daten können importiert werden oder über
+                                    das Webinterface von Recapo angelegt werden.<br/>
+                                    Darüber hinaus bietet Recapo die Möglichkeit Karten innerhalb einer Ebene im Baum in verschiedene Sektionen zu gruppieren, sodass diese im Experiment mit dem Probanden in verschiedenen Regionen der Webseite angezeigt werden, um so ein praxisnaheres
+                                    Experiment zu ermöglichen.<br/>
+                                    Für den Test der der Architektur müssen Aufgaben definiert werden, die der Proband erfüllen soll. Idealerweise sind dies typische Funktionen der Webseite. Dazu wird eine kurze Beschreibung der Aufgabe angelegt und festgelegt, welche Karte die
+                                    Zielkarte wäre. Der Proband muss die Zielkarte im Test allerdings nicht erreichen, es besteht die Möglichkeit die Aufgabe abzubrechen oder an jeder beliebigen Stelle in der Navigationsstruktur die Aufgabe als gelöst zu markieren. In der Auswertung
+                                    werden diese Ergebnisse entsprechend aufgearbeietet und dargestellt.<br/>
+                                    Sobald die Zeitplanung erstellt ist, kann das Projekt veröffentlicht werden und im Anschluss mit den Experimenten begonnen werden.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var REQUIREJS = "{{urlFor('/js/index/index')}}";
+    </script>
+
+    {% include 'hooter/footer.twig' %}

@@ -1,0 +1,46 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">
+        <span class="glyphicon glyphicon-lock"></span>
+        Einloggen
+    </h4>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal validate" role="form" action="{{ urlFor('/authentication/login') }}" method="post">
+        <input type="hidden" name="url" value="{{urlFor('/')}}">
+
+        <div class="form-group">
+            <label for="login" class="col-sm-3 control-label">Benutzername</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control focus" id="login" name="login" placeholder="Benutzername">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">Passwort</label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Passwort">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    Abbrechen</button>
+                <button type="submit" class="btn btn-success pull-right">
+                    <i class="glyphicon glyphicon-ok"></i>
+                    Anmelden</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    <a class="pull-left" href="#">
+        <i class="glyphicon glyphicon-question-sign"></i>
+        Passwort vergessen</a>
+    <a class="pull-right" href="{{urlFor('/registration/modal')}}" data-toggle="modal" data-target=".modalTemplate" data-dismiss="modal">
+        <i class="glyphicon glyphicon-pencil"></i>
+        Neuen Account registrieren</a>
+</div>

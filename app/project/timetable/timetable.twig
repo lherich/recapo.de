@@ -1,0 +1,115 @@
+{% include 'project/hooter/header.twig' %}
+
+<div class="tab-pane" id="timetable">
+
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <h2>
+                <span class="glyphicon glyphicon-time"></span>
+                Zeitplanung</h2>
+        </div>
+        <div class="panel-body">
+            Alle Experimente sind über ihre festgelegte URL (bei dem ausgewählten Experiment "{{project.name}}" also unter der URL
+            <a href="{{ baseUrl() }}{{ urlFor('/welcome', {PROJECTURL:project.url}) }}" style="white-space: nowrap;">
+                <i class="glyphicon glyphicon-link"></i>{{ baseUrl() }}{{ urlFor('/welcome', {PROJECTURL:project.url}) }}</a>) öffentlich zugänglich. Mit der Zeitplanung kann festlegt werden innerhalb welchem Zeitraum das Experiment durchführbar ist. Wenn keine
+            Zeitplanung festgelegt wird ist das Experiment nicht aufrufbar und der Proband wird mit einer entsprechenden Fehlermeldung auf die Startseite weitergeleitet.<br/><br/>
+            <form action="{{ urlFor('/updateproject/timetable', {ID:project.ID}) }}" method="post" class="validate">
+
+                <div class="list-group">
+                    <a class="list-group-item checkbox {% if (project.startDatetime == " 0000-00-00 00:00:00") and (project.endDatetime == " 0000-00-00 00:00:00") %}active{% endif %}" id="schedulingFlag">
+                        <div class="row">
+                            <div class="col-md-1 col-md-offset-1"><br/>
+                                <div class="checkbox" data-initialize="checkbox">
+                                    <label class="checkbox-custom">
+                                        <input name="schedulingFlag" id="schedulingFlagCheckbox" class="sr-only" type="checkbox" {% if (project.startDatetime == "0000-00-00 00:00:00") and (project.endDatetime == "0000-00-00 00:00:00") %} checked="true" {% endif %}>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-10">
+                                <h4 class="list-group-item-heading">Keine Zeitplanung festlegen</h4>
+                                <p class="list-group-item-text help-block">
+                                    <small>Das Experiment befindet soll sich noch im Entwurfsmodus befinden und ist noch nicht aufrufbar.</small>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <fieldset id="schedulingFieldset" {% if (project.startDatetime == "0000-00-00 00:00:00") and (project.endDatetime == "0000-00-00 00:00:00") %} disabled="disabled" {% endif %}>
+                    <div class="form-group">
+
+                        <label for="schedulingStartDatetime" class="col-md-2 control-label">Beginn</label>
+
+                        <div class="col-md-10">
+                            <div class="input-group date" id="schedulingStartDatetime">
+                                <input type='text' name="schedulingStartDatetime" class="form-control"/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br/>
+                    <br/>
+
+                    <div class="form-group">
+
+                        <label for="schedulingEndType" class="col-md-2 control-label">Ende</label>
+
+                        <div class="col-md-5">
+                            <select id="schedulingEndType" name="schedulingEndType" class="form-control">
+                                <option value="no">Endet nie</option>
+                                <option value="day">Endet nach X Tagen</option>
+                                <option value="point" {% if (project.endDatetime != "0000-00-00 00:00:00") %} selected="true" {% endif %}>Endet am Zeitpunkt</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-5">
+
+                            <div id='schedulingEndDatetime' class="input-group date" style="display: none;">
+                                <input type='text' name="schedulingEndDatetime" class="form-control" value="{% if (project.endDatetime != " 0000-00-00 00:00:00") %}{{project.endDatetime|date('d.m.Y')}}{% endif %}"/>
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                            <!-- /input-group -->
+
+                            <div id="schedulingEndSpinbox" class="spinbox input-group" data-initialize="spinbox" style="display: none;">
+                                <input type="text" class="form-control spinbox-input" name="schedulingEndSpinbox" value="7">
+                                <div class="spinbox-buttons btn-group btn-group-vertical">
+                                    <button type="button" class="btn btn-default spinbox-up btn-xs">
+                                        <span class="glyphicon glyphicon-chevron-up"></span>
+                                        <span class="sr-only">Increase</span>
+                                    </button>
+                                    <button type="button" class="btn btn-default spinbox-down btn-xs">
+                                        <span class="glyphicon glyphicon-chevron-down"></span>
+                                        <span class="sr-only">Decrease</span>
+                                    </button>
+                                </div>
+                                <span class="input-group-addon">Tagen &nbsp; &nbsp; &nbsp;
+                                </span>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </fieldset>
+
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block">Speichern</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var REQUIREJS = ["{{urlFor('/js/project/timetable/timetable')}}", "{{urlFor('/js/project/section/section')}}"];
+</script>
+
+{% include 'project/hooter/footer.twig' %}

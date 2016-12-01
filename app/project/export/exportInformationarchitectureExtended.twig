@@ -1,0 +1,26 @@
+{% macro traversal(items, level) %}
+    {% import _self as macros %}
+    {% for item in items %}
+        {% set level = level + 1 %}
+
+        <item level="{{level}}">
+            <id>{{item.ID}}</id>
+            <title>{{item.title}}</title>
+            <flag>{{item.flag}}</flag>
+            <sectionID>{{item.sectionID}}</sectionID>
+            <itemID>{{item.itemID}}</itemID>
+            <linkToInformationarchitectureID>{{item.linkToInformationarchitectureID}}</linkToInformationarchitectureID>
+            <linkToItemID>{{item.linkToItemID}}</linkToItemID>
+            <children>
+                {{ macros.traversal(item.children, level) }}
+            </children>
+        </item>
+
+        {% set level = level - 1 %}
+    {% endfor %}
+{% endmacro %}
+{% import _self as macros %}
+<?xml version='1.0'?>
+<recapo>
+    {{ macros.traversal(informationarchitecture, 0) }}
+</recapo>

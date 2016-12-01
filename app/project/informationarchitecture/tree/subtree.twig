@@ -1,0 +1,224 @@
+{% include 'project/hooter/header.twig' %}
+
+<div class="tab-pane" id="informationarchitecture">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <h2>
+                <span class="glyphicon glyphicon-th"></span>
+                Erstellen der Informationsarchitektur</h2>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <h3>
+                        Karten
+                        <small class="btn-group">
+                            <a href="{{urlFor('/project/informationarchitecture/item/deleteall', {ID:project.ID})}}" class="btn btn-default btn-sm" data-toggle="modal" data-target=".modalTemplate">
+                                <span class="glyphicon glyphicon-trash"></span>
+                                Alle löschen</a>
+                            <a href="{{urlFor('/project/export/file',{ID:project.ID,NAME:" item"})}}" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-export"></span>
+                                Exportieren</a>
+                            <a href="{{urlFor('/project/import',{ID:project.ID})}}" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-import"></span>
+                                Importieren</a>
+                        </small>
+                    </h3>
+                    Karten können neu angelegt werden und auch wieder gelöscht werden. Sie können rechts in die IA per Drag and Drop platziert werden. Die Karten bleibt dabei in der Liste und eine Kopie wird in der IA angelegt.
+
+                    <div id="itemPillbox" class="pillbox" data-initialize="pillbox">
+                        <ul class="clearfix pill-group">
+
+                            {% for item in projectItems %}
+                                <li class="btn btn-default pill draggable" data-id="{{item.ID}}" data-name="{{item.name}}">
+                                    <span>{{item.name}}</span>
+                                    {% if item.flag == "child" %}
+                                        <span class="glyphicon glyphicon-close">
+                                            <span class="sr-only">Remove</span>
+                                        </span>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+
+                            <li class="pillbox-input-wrap btn-group">
+                                <input type="text" class="form-control dropdown-toggle pillbox-add-item" placeholder="Item hinzufügen" style="border: 1px solid lightgrey;">
+                                <button type="button" class="dropdown-toggle sr-only">
+                                    <span class="caret"></span>
+                                    <span class="sr-only">Toggle Dropdown</span>
+                                </button>
+                                <ul class="suggest dropdown-menu" role="menu" data-toggle="dropdown" data-flip="auto"></ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <hr/>
+
+                    <h3>Container
+                        <small class="btn-group">
+                            <a href="{{urlFor('/project/informationarchitecture/container/add', {ID:project.ID})}}" class="btn btn-default btn-sm" data-toggle="modal" data-target=".modalTemplate">
+                                <span class="glyphicon glyphicon-plus"></span>
+                                Container erstellen</a>
+                            <a href="{{urlFor('/project/informationarchitecture/container/deleteall', {ID:project.ID})}}" class="btn btn-default btn-sm" data-toggle="modal" data-target=".modalTemplate">
+                                <span class="glyphicon glyphicon-trash"></span>
+                                Alle löschen</a>
+                            <a href="{{urlFor('/project/export/file',{ID:project.ID,NAME:" container"})}}" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-export"></span>
+                                Exportieren</a>
+                            <a href="{{urlFor('/project/import',{ID:project.ID})}}" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-import"></span>
+                                Importieren</a>
+                        </small>
+                    </h3>
+                    Die Container können angelegt und gelöscht werden. Sie beinhalten ein oder mehrere Karten, die keine weiteren Unterebenen mehr haben. Das heißt diese Karten stehen auf der untersten Hierarchieebene bzw. sind Alleinstehend. Die Container können per
+                    Drag and Drop in die IA eingefügt werden und sind dafür da wiederkehrende Links wie z.B. "Impressum, Datenschutzrichtlinien" im Footer nicht jedes mal mit eintragen zu müssen.
+                    <div id="containerPillbox" class="pillbox" data-initialize="pillbox">
+                        <ul class="clearfix pill-group">
+                            {% for item in projectContainers %}
+                                <li class="btn btn-default pill draggable" data-value="three-value">
+                                    <span>#{{item.ID}}
+                                        -
+                                        {{item.name}}</span>
+                                    <span class="glyphicon glyphicon-close">
+                                        <span class="sr-only">Remove</span>
+                                    </span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <h3>
+                        Informationsarchitektur
+                        <small class="btn-group">
+                            <a href="{{urlFor('/project/informationarchitecture/deleteall', {ID:project.ID})}}" class="btn btn-default btn-sm" data-toggle="modal" data-target=".modalTemplate">
+                                <span class="glyphicon glyphicon-trash"></span>
+                                IA löschen</a>
+                            <a href="{{urlFor('/project/export/file',{ID:project.ID,NAME:" ia"})}}" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-export"></span>
+                                Exportieren</a>
+                            <a href="{{urlFor('/project/import',{ID:project.ID})}}" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-import"></span>
+                                Importieren</a>
+                        </small>
+                    </h3>
+
+                    <ul id="informationarchitecturePillbox" class="list-group">
+                        <li class="list-group-item">
+                            <a class="minimizeable">Root
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+                            </a>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <div class="dropable">
+                                        <span>Header</span>
+                                        <ul class="list-group sortable">
+                                            <li class="list-group-item draggable">
+                                                <a class="minimizeable">Startseite
+                                                    <span class="glyphicon glyphicon-chevron-down"></span>
+                                                </a>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <div class="dropable">
+                                                            <span>Header</span>
+                                                            <ul class="list-group sortable "></ul>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="dropable">
+                                                            <span>Article</span>
+                                                            <ul class="list-group sortable"></ul>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="dropable">
+                                                            <span>Asides</span>
+                                                            <ul class="list-group sortable"></ul>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="dropable">
+                                                            <span>Footer</span>
+                                                            <ul class="list-group sortable"></ul>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="list-group-item draggable">
+                                                <a class="minimizeable">DLRG
+                                                    <span class="glyphicon glyphicon-chevron-down"></span>
+                                                </a>
+                                                <ul class="list-group">
+                                                    <li class="list-group-item">
+                                                        <div class="dropable">
+                                                            <span>Header</span>
+                                                            <ul class="list-group sortable"></ul>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="dropable">
+                                                            <span>Article</span>
+                                                            <ul class="list-group sortable"></ul>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="dropable">
+                                                            <span>Aside</span>
+                                                            <ul class="list-group sortable"></ul>
+                                                        </div>
+                                                    </li>
+                                                    <li class="list-group-item">
+                                                        <div class="dropable">
+                                                            <span>Footer</span>
+                                                            <ul class="list-group sortable"></ul>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="dropable">
+                                        <span>Article</span>
+                                        <ul class="list-group sortable"></ul>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="dropable">
+                                        <span>Aside</span>
+                                        <ul class="list-group sortable"></ul>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="dropable">
+                                        <span>Footer</span>
+                                        <ul class="list-group sortable"></ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% for item in informationarchitecture %}
+    {{item.name}}<br/>
+{% endfor %}
+
+{% include 'hooter/modal.twig' %}
+
+<script type="text/javascript">
+    var REQUIREJS = "{{urlFor('/js/project/informationarchitecture/informationarchitecture')}}";
+</script>
+{% include 'project/hooter/footer.twig' %}
+
+{# <li class="list-group-item"> <a class="minimizeable">Startseite <span class="glyphicon glyphicon-chevron-down"></span></a> <ul class="list-group"> <li class="list-group-item"> <div class="dropable"> Header </div> </li> <li class="list-group-item">
+<div class="dropable"> Article </div> </li> <li class="list-group-item"> <div class="dropable"> Aside </div> </li> <li class="list-group-item"> <div class="dropable"> Footer </div> </li> </ul> </li> #}

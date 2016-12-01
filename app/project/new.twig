@@ -1,0 +1,257 @@
+{% include 'hooter/header.twig' %}
+
+{% include 'hooter/brand.twig' %}
+
+{% include 'hooter/breadcrumb.twig' %}
+
+{% include 'hooter/flash.twig' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-3">
+            {% include 'hooter/navigation.twig' %}
+        </div>
+
+        <div class="col-xs-12 col-md-9">
+            <div class="well">
+
+                <h1>Ein neues Experiment erstellen</h1>
+                <form role="form" class="form-horizontal validate" method="post" action="{{ urlFor('/project/insert') }}" data-toggle="validator" id="wizardForm">
+                    <div class="wizard">
+
+                        <!-- Liste //-->
+                        <ul class="steps">
+                            <li data-step="1" class="active">
+                                <span class="badge badge-info">1</span>Experimentdaten<span class="chevron"></span>
+                            </li>
+                            <li data-step="2">
+                                <span class="badge">2</span>Sektionen<span class="chevron"></span>
+                            </li>
+                            <li data-step="3">
+                                <span class="badge">3</span>Zeitplanung<span class="chevron"></span>
+                            </li>
+                        </ul>
+
+                        <div class="actions" style="display: none;">
+                            <button type="button" class="btn btn-mini btn-prev" disabled="true">Zurück</button>
+                            <button type="button" class="btn btn-mini btn-next" data-last="Speichern">Weiter</button>
+                        </div>
+
+                        <div class="step-content">
+                            <div class="step-pane sample-pane alert active" data-step="1">
+                                <fieldset disabled>
+                                    <div class="form-group">
+                                        <label for="type" class="col-sm-3 control-label">Experimenttyp</label>
+                                        <div class="col-sm-9">
+                                            <select class="form-control" id="type">
+                                                <option>Reverse-Card-Sorting</option>
+                                            </select>
+                                            <span class="help-block small">Das Verfahren mit dem das Experiment durchgeführt werden soll.</span>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <div class="form-group has-feedback">
+                                    <label for="name" class="col-sm-3 control-label">Experimentname</label>
+                                    <div class="col-sm-9">
+                                        <div class="has-warning">
+                                            <input type="text" class="form-control focus has-warning" id="name" placeholder="Projektname" required maxlength="255" data-error="Bitte tragen Sie einen Projektnamen ein." name="name">
+                                        </div>
+                                        <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                                        <div class="help-block with-errors">Der Name zur Identifizierung im Backend unter Experimentverwaltung und als Titel im Experiment.</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group has-feedback">
+                                    <label for="url" class="col-sm-3 control-label">Experiment URL</label>
+                                    <div class="col-sm-9">
+                                        <div class="has-warning">
+                                            <input
+                                                type="text"
+                                                class="form-control "
+                                                id="url"
+                                                placeholder="URL zum Experiemt"
+                                                required
+                                                pattern="^([A-Za-z0-9]){1,}$"
+                                                maxlength="150"
+                                                data-error="Bitte tragen Sie einen URL-konformen Namen ein (bestehend aus Zahlen und alphanummerischen Zeichen)."
+                                                name="url">
+                                        </div>
+                                        <div class="help-block with-errors">Das Experiment kann unter der URL
+                                            <a id="experimenturl" data-baseurl="{{ baseUrl() }}" href="{{ baseUrl() }}">{{ baseUrl() }}</a>
+                                            durchgeführt werden.</div>
+                                    </div>
+                                </div>
+
+                                <!--
+                <div class="col-sm-12">
+                  <div class="list-group">
+                    <a class="list-group-item checkbox active" id="offerButton">
+                      <div class="row">
+                        <div class="col-md-1 col-md-offset-1"><br />
+                          <div class="checkbox" data-initialize="checkbox">
+                            <label class="checkbox-custom">
+                              <input name="offerButton" class="sr-only" type="checkbox" value="offerButton" checked="true">
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-10">
+                          <h4 class="list-group-item-heading">"Ich denke diese Seite ist richtig"-Button anbieten</h4>
+                          <p class="list-group-item-text help-block"><small>Im Experiment kann der Proband auf den Button "Ich denke diese Seite ist richtig" klicken, um eine Aufgabe abzuschließen, auch wenn er sich nicht auf der gesuchten Seite befindet.</small></p>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+                //-->
+                            </div>
+
+                            <div class="step-pane sample-pane alert" data-step="2">
+                                <h2>
+                                    <small>Angaben sind nicht notwendig</small>
+                                </h2>
+                                <br/>
+                                <div class="col-sm-10 col-sm-offset-1">
+                                    <div class="list-group">
+                                        {% for item in sections %}
+                                            <a class="list-group-item checkbox {% if item.ID == 1 %}active{% endif %}" id="section[{{item.ID}}]">
+                                                <div class="row">
+                                                    <div class="col-md-1 col-md-offset-1"><br/>
+                                                        <div class="checkbox" data-initialize="checkbox">
+                                                            <label class="checkbox-custom">
+                                                                <input name="section[{{item.ID}}]" class="sr-only" type="checkbox" {% if item.ID == 1 %} checked="true" {% endif %}>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-10">
+                                                        <h4 class="list-group-item-heading">{{item.section}}</h4>
+                                                        <p class="list-group-item-text">{{item.description}}</p>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="step-pane sample-pane alert" data-step="3">
+                                <h2>
+                                    <small>Angaben sind nicht notwendig</small>
+                                </h2>
+                                <br/>
+                                <div class="col-md-10 col-md-offset-1">
+
+                                    <div class="list-group">
+                                        <a class="list-group-item checkbox active" id="schedulingFlag">
+                                            <div class="row">
+                                                <div class="col-md-1 col-md-offset-1"><br/>
+                                                    <div class="checkbox" data-initialize="checkbox">
+                                                        <label class="checkbox-custom">
+                                                            <input name="schedulingFlag" id="schedulingFlagCheckbox" class="sr-only" type="checkbox" checked="true">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <h4 class="list-group-item-heading">Keine Zeitplanung festlegen</h4>
+                                                    <p class="list-group-item-text help-block">
+                                                        <small>Das Experiment befindet soll sich noch im Entwurfsmodus befinden und ist noch nicht aufrufbar.</small>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                    <fieldset id="schedulingFieldset" disabled="true">
+                                        <div class="form-group">
+
+                                            <label for="schedulingStartDatetime" class="col-md-2 control-label">Beginn</label>
+
+                                            <div class="col-md-10">
+                                                <div class="input-group date" id="schedulingStartDatetime">
+                                                    <input type='text' name="schedulingStartDatetime" class="form-control"/>
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group">
+
+                                            <label for="schedulingEndType" class="col-md-2 control-label">Ende</label>
+
+                                            <div class="col-md-5">
+                                                <select id="schedulingEndType" name="schedulingEndType" class="form-control">
+                                                    <option value="no">Endet nie</option>
+                                                    <option value="day">Endet nach X Tagen</option>
+                                                    <option value="point">Endet am Zeitpunkt</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-md-5">
+
+                                                <div id='schedulingEndDatetime' class="input-group date" style="display: none;">
+                                                    <input type='text' name="schedulingEndDatetime" class="form-control"/>
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                                <!-- /input-group -->
+
+                                                <div id="schedulingEndSpinbox" class="spinbox input-group" data-initialize="spinbox" style="display: none;">
+                                                    <input type="text" class="form-control spinbox-input" name="schedulingEndSpinbox" value="7">
+                                                    <div class="spinbox-buttons btn-group btn-group-vertical">
+                                                        <button type="button" class="btn btn-default spinbox-up btn-xs">
+                                                            <span class="glyphicon glyphicon-chevron-up"></span>
+                                                            <span class="sr-only">Increase</span>
+                                                        </button>
+                                                        <button type="button" class="btn btn-default spinbox-down btn-xs">
+                                                            <span class="glyphicon glyphicon-chevron-down"></span>
+                                                            <span class="sr-only">Decrease</span>
+                                                        </button>
+                                                    </div>
+                                                    <span class="input-group-addon">Tagen &nbsp; &nbsp; &nbsp;
+                                                    </span>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Buttons //-->
+                    <div class="orm-group">
+                        <br/>
+                        <div class="col-sm-4">
+                            <button type="button" class="btnWizardPrev btn btn-warning btn-block" style="display:none;">
+                                <span class="glyphicon glyphicon-arrow-left"></span>&nbsp; Zurück</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="submit" class="btnWizardSubmit btn btn-success btn-block">
+                                <span class="glyphicon glyphicon-ok"></span>&nbsp; Speichern</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <button type="button" class="btnWizardNext btn btn-info btn-block">Weiter &nbsp;<span class="glyphicon glyphicon-arrow-right"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var REQUIREJS = ["{{urlFor('/js/project/new')}}", "{{urlFor('/js/project/timetable/timetable')}}", "{{urlFor('/js/project/section/section')}}"];
+</script>
+
+{% include 'hooter/footer.twig' %}

@@ -15,7 +15,15 @@ A webapplication for usability testing. Recapo offers an abstracted and partial 
 
 ### Installation
 
-Please see [./install/*](install/).
+Please be aware that there is no documentation for the installation. The files may be self-explanatory. See [./install/*](install/) and check ./web/index.php.
+
+### ToDo
+* Refactor ./app/ and ./web/ and add documentation for the content of both folders.
+* Add Composer, Load libraries via Composer, Upgrade libraries.
+* Add [phpdotenv](https://github.com/vlucas/phpdotenv).
+* Add a dependencies for JavaScript libraries.
+* Add a docker-compose.yml for local development.
+* Add tests and CI support.
 
 ### Changelog
 Please see [CHANGELOG.md](CHANGELOG.md).

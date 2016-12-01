@@ -1,0 +1,44 @@
+<li class="list-group-item draggable">
+  <a class="minimizeable">Startseite <span class="glyphicon glyphicon-chevron-down"></span></a>
+  <ul class="list-group">
+    {% include "includes/menu-links.html" with {'links': link.sublinks} %}
+    {% for section in projectSections %}
+    <li class="list-group-item">
+      <div class="dropable">
+        <span>{{section.id}} {{section.name}}</span>
+        <ul class="list-group sortable ">
+        </ul>
+      </div>
+    </li>
+
+    {% endfor %}
+    <li class="list-group-item">
+      <div class="dropable">
+        <span>Header</span>
+        <ul class="list-group sortable ">
+        </ul>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="dropable">
+        <span>Article</span>
+        <ul class="list-group sortable">
+        </ul>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="dropable">
+        <span>Asides</span>
+        <ul class="list-group sortable">
+        </ul>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="dropable">
+        <span>Footer</span>
+        <ul class="list-group sortable">
+        </ul>
+      </div>
+    </li>
+  </ul>
+</li>

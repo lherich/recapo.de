@@ -1,0 +1,39 @@
+.navbar-collapse, .nav, .breadcrumb, .btn-default {
+  background-color: #ddddff;
+}
+.btn-default {
+  background-image: none;
+}
+.tab-content {
+  margin: 15px;
+}
+
+.navbar-fixed-bottom .navbar-collapse {
+  background-image: none;
+  border-top: 2px solid black;
+}
+.navbar-main {
+  border: 0px solid black;
+}
+.breadcrumb {
+  border: 1px solid lightgrey;
+}
+
+body {
+  padding-bottom: 250px;
+}
+.nav-pills>li>a {
+  background-color: #ddddff;
+}
+
+.breadcrumb {
+  margin-bottom: 0px;
+}
+
+.h2-task {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.task-padding{
+  padding: 8px 15px;
+}

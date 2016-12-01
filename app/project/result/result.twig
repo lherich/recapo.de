@@ -1,0 +1,77 @@
+{% include 'project/hooter/header.twig' %}
+
+<div class="tab-pane" id="result">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <h2>
+                <span class="glyphicon glyphicon-record"></span>
+                Die Ergebnisse</h2>
+        </div>
+        <div class="panel-body">
+            Die hier dargestellten Ergebnisse ist nur eine Übersicht der bisher durchgeführten Experimente mit Startzeit, Endzeit und Dauer. Die Gesamtresultate oder weitere Daten können auf der Seite
+            <a href="{{ urlFor('/project/export', {ID:project.ID}) }}" name="/project/export" style="white-space: nowrap;">
+                <span class="glyphicon glyphicon-export"></span>
+                Export</a>
+            heruntergeladen werden oder direkt über den sich unter der Tabelle befindenen Button.<br/><br/>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#ID</th>
+                                <th>Startzeit</th>
+                                <th>Endzeit</th>
+                                <th>Dauer</th>
+                                <th>Kommentar</th>
+                                <th>Aktion</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>#ID</th>
+                                <th>Startzeit</th>
+                                <th>Endzeit</th>
+                                <th>Dauer</th>
+                                <th>Kommentar</th>
+                                <th>Aktion</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {% if results is empty %}
+                                <tr>
+                                    <td colspan="4">Keine Ergebnisse vorhanden</td>
+                                </tr>
+                            {% endif %}
+                            {% for item in results %}
+                                <tr>
+                                    <td>#{{item.ID}}</td>
+                                    <td>{{item.startDatetime|date('H:i:s, d.m.Y')}}</td>
+                                    <td>{{item.endDatetime|date('H:i:s, d.m.Y')}}</td>
+                                    <td>{{item.duration}}</td>
+                                    <td>{{item.comment}}</td>
+                                    <td>
+                                        <a href="{{urlFor('/project/result/delete', {ID:project.ID,ITEMID:item.ID})}}" class="btn btn-default" data-toggle="modal" data-target=".modalTemplate">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                            Löschen</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <hr/>
+                    <a href="{{urlFor('/project/export/file',{ID:project.ID,NAME:" result"})}}" class="btn btn-default">
+                        <i class="glyphicon glyphicon-export"></i>
+                        Reportübersicht als CSV exportieren</a>
+                    <a href="{{urlFor('/project/exportReport',{ID:project.ID})}}" class="btn btn-default">
+                        <i class="glyphicon glyphicon-export"></i>
+                        Gesamtresultate als XML exportieren</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'hooter/modal.twig' %}
+
+{% include 'project/hooter/footer.twig' %}

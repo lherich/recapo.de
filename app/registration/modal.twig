@@ -1,0 +1,98 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">
+        <span class="glyphicon glyphicon-pencil"></span>
+        Registrierung</h4>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal validate" role="form" action="{{ urlFor('/registration') }}" method="post">
+
+        <div class="form-group has-warning has-feedback">
+            <label for="login" class="col-sm-3 control-label">Benutzername</label>
+            <div class="col-sm-9">
+                <input
+                    type="text"
+                    class="form-control focus"
+                    id="login"
+                    name="login"
+                    placeholder="Benutzername zum Einloggen"
+                    required
+                    maxlength="255"
+                    data-error="Bitte tragen Sie einen Login bestehend aus maximal 255 alphanummerischen Zeichen ein."
+                    data-remote-error="Der Login ist leider schon vergeben"
+                    data-remote="{{ urlFor('/registration/check') }}">
+                <span class="glyphicon glyphicon-flash form-control-feedback"></span>
+                <div class="help-block with-errors"></div>
+            </div>
+        </div>
+
+        <div class="form-group has-warning has-feedback">
+            <label for="password" class="col-sm-3 control-label">Passwort</label>
+            <div class="col-sm-9">
+                <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Passwort"
+                    required
+                    data-minlength="5"
+                    maxlength="255"
+                    data-error="Bitte tragen Sie ein Passwort bestehend aus mindestens 5 bis maximal 255 alphanummerischen Zeichen ein.">
+                <span class="glyphicon glyphicon-flash form-control-feedback"></span>
+                <div class="help-block with-errors"></div>
+            </div>
+        </div>
+
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-primary">
+                <div class="panel-title btn-group btn-group-justified">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="btn btn-default">Weitere Informationen (optional)
+                        <span class="caret"></span>
+                    </a>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="form-group has-success has-feedback">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label for="forename" class="col-sm-3 control-label">Vorname</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="forename" name="forename" placeholder="Vorname">
+                                        <span class="glyphicon glyphicon-ok form-control-feedback" style="right: 15px;"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="surname" class="col-sm-3 control-label">Nachname</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="surname" name="surname" placeholder="Nachname">
+                                        <span class="glyphicon glyphicon-ok form-control-feedback" style="right: 15px;"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group has-success has-feedback">
+                            <label for="email" class="col-sm-3 control-label">E-Mail Adresse</label>
+                            <div class="col-sm-12">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail">
+                                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">
+            <i class="glyphicon glyphicon-remove"></i>
+            Abbrechen</button>
+        <button type="submit" class="btn btn-success pull-right">
+            <i class="glyphicon glyphicon-ok"></i>
+            Registrieren</button>
+        <br/>
+        <br/>
+    </form>
+</div>

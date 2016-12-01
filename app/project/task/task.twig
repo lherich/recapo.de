@@ -1,0 +1,94 @@
+{% include 'project/hooter/header.twig' %}
+
+<div class="tab-pane" id="proband">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <h2>
+                <span class="glyphicon glyphicon-tasks"></span>
+                Aufgaben für den Probanden</h2>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#ID</th>
+                                <th>Aufgabe</th>
+                                <th>Zielkarte</th>
+                                <th>Aktion</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>#ID</th>
+                                <th>Aufgabe</th>
+                                <th>Zielkarte</th>
+                                <th>Aktion</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {% if tasks is empty %}
+                                <tr>
+                                    <td colspan="3">
+                                        <a href="{{urlFor('/project/task/create', {ID:project.ID})}}" class="btn btn-success" data-toggle="modal" data-target=".modalTemplate">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                            Aufgabe erstellen</a>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                            {% for item in tasks %}
+                                <tr>
+                                    <td>#{{item.ID}}</td>
+                                    <td>
+                                        <a href="#" class="editable" data-type="textarea" data-pk="{{item.ID}}" data-name="task" data-value="{{item.task}}" data-url="{{urlFor('/project/task/update')}}" data-title="Aufgabe">{{item.task}}
+                                            <small>
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                            </small>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#" class="editable selectItemID" data-type="select" data-pk="{{item.ID}}" data-name="itemID" data-value="{{item.itemID}}" data-url="{{urlFor('/project/task/update')}}" data-title="Zielkarte wählen">{{item.itemName}}
+                                            <small>
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                            </small>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="{{urlFor('/project/task/delete', {ID:project.ID,ITEMID:item.ID})}}" class="btn btn-default" data-toggle="modal" data-target=".modalTemplate">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                            Löschen</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <hr/>
+                    <a href="{{urlFor('/project/task/create', {ID:project.ID})}}" class="btn btn-default" data-toggle="modal" data-target=".modalTemplate">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        Aufgabe erstellen</a>
+                    <a href="{{urlFor('/project/export/file',{ID:project.ID,NAME:" task"})}}" class="btn btn-default">
+                        <i class="glyphicon glyphicon-export"></i>
+                        als CSV exportieren</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'hooter/modal.twig' %}
+
+<script type="text/javascript">
+    var REQUIREJS = "{{urlFor('/js/project/task/task')}}";
+    var items = [
+        {% for item in items %}
+            {
+                value: {{item.ID}},
+                text: "{{item.name}}"
+            },
+        {% endfor %}
+    ];
+</script>
+
+{% include 'project/hooter/footer.twig' %}

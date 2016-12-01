@@ -1,0 +1,87 @@
+{% include 'project/hooter/header.twig' %}
+
+<div class="tab-pane" id="text">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <h2>
+                <span class="glyphicon glyphicon-text-width"></span>
+                Texte</h2>
+        </div>
+        <div class="panel-body">
+            Auf dieser Seite können die Texte für dieses Experiment eingetragen werden. Diese werden dem Probanden bei der Durchführung von diesem Experiment angezeigt. Die Begrüßung und Anleitung erscheint vor der Anzeige der ersten Aufgabe. Die Danksagung,
+            sobald der Proband alle Aufgaben abgearbeitet hat.<br/><br/>
+            <form action="{{urlFor('/project/text/update',{ID:project.ID})}}" method="post">
+
+                <div class="panel-group" id="accordion">
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#welcomeText">
+                                <h4 class="panel-title">
+                                    <small>
+                                        <span class="glyphicon glyphicon-chevron-down"></span>
+                                    </small>
+                                    Begrüßung</h4>
+                            </a>
+                        </div>
+                        <div id="welcomeText" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <textarea class="form-control" style="height: 300px;" name="welcomeText" placeholder="Willkommensnachricht">{{project.welcomeText}}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#introduction">
+                                <h4 class="panel-title">
+                                    <small>
+                                        <span class="glyphicon glyphicon-chevron-down"></span>
+                                    </small>
+                                    Anleitung</h4>
+                            </a>
+                        </div>
+                        <div id="introduction" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <textarea class="form-control" style="height: 300px;" name="instructionText" placeholder="Anleitung">{{project.instructionText}}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#tribute">
+                                <h4 class="panel-title">
+                                    <small>
+                                        <span class="glyphicon glyphicon-chevron-down"></span>
+                                    </small>
+                                    Danksagung</h4>
+                            </a>
+                        </div>
+                        <div id="tribute" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <textarea class="form-control" style="height: 300px;" name="tributeText" placeholder="Danksagung">{{project.tributeText}}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block">Speichern</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% include 'project/hooter/footer.twig' %}

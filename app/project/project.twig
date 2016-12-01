@@ -1,0 +1,71 @@
+{% include 'hooter/header.twig' %}
+
+{% include 'hooter/brand.twig' %}
+
+{% include 'hooter/breadcrumb.twig' %}
+
+{% include 'hooter/flash.twig' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-3">
+            {% include 'hooter/navigation.twig' %}
+        </div>
+
+        <div class="col-xs-12 col-md-9">
+            <div class="well">
+                <small class="label label-default pull-right">
+                    <a href="#" style="color: white;" class="editable flag reloadOnSave" data-type="select" data-pk="{{project.ID}}" data-name="flag" data-value="{{project.flag}}" data-url="{{urlFor('/project/update', {'FIELD':'flag'})}}" data-title="Status"></a>
+                    {% include 'project/flagGlyphicon.twig' with {flag: project.flag} %}</small>
+                <h1>#{{project.ID}}
+                    -
+                    {{project.name}}</h1>
+                <hr/>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#home" data-toggle="tab">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#text" data-toggle="tab">Texte</a>
+                    </li>
+                    <li>
+                        <a href="#timetable" data-toggle="tab">Zeitplanung</a>
+                    </li>
+                    <li>
+                        <a href="#section" data-toggle="tab">Sektionen</a>
+                    </li>
+                    <li>
+                        <a href="#informationarchitecture" data-toggle="tab">Informationsarchitektur</a>
+                    </li>
+                    <li>
+                        <a href="#result" data-toggle="tab">Resultate</a>
+                    </li>
+                    <li>
+                        <a href="#proband" data-toggle="tab">Probanden</a>
+                    </li>
+                    <li>
+                        <a href="#import" data-toggle="tab">Import</a>
+                    </li>
+                </ul>
+                {{ CURRENT_NAME }}
+                <!-- Tab panes -->
+                <div class="tab-content">
+
+                    {% include 'project/projectDashboard.twig' %}
+                    {% include 'project/projectText.twig' %}
+                    {% include 'project/projectTimetable.twig' %}
+                    {% include 'project/projectSection.twig' %}
+                    {% include 'project/projectIA.twig' %}
+                    {% include 'project/projectImport.twig' %}
+                    {% include 'project/projectResult.twig' %}
+                    {% include 'project/projectProband.twig' %}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% include 'hooter/footer.twig' %}

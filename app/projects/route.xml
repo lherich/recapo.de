@@ -1,0 +1,27 @@
+<setting>
+    <routes>
+        <route>
+            <name>/projects</name>
+            <route>/backend/projects</route>
+            <middleware>LoadViewVariables</middleware>
+            <middleware>LoadViewAuthenticationVariables</middleware>
+            <middleware>LoadViewProjectVariables</middleware>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>projects/</path>
+            <php>projects</php>
+            <tpl>projects</tpl>
+            <js>projects</js>
+        </route>
+
+        <route>
+            <name>/projects/delete</name>
+            <route>/backend/projects/delete/:ID(/:CONFIRMED)</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>projects/</path>
+            <php>delete</php>
+            <tpl>delete</tpl>
+        </route>
+    </routes>
+</setting>

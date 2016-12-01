@@ -1,0 +1,20 @@
+
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h4 class="modal-title"><span class="glyphicon glyphicon-trash"></span> Soll die Informationsarchitektur wirklich komplett gelöscht werden?</h4>
+</div>
+<div class="modal-body">
+  Soll die Informationsarchitektur für das Projekt "<i>{{project.name}}</i>" wirklich komplett gelöscht werden?<br />
+  Gelöscht wird die gesamte Struktur, aber keine Karten oder Container.
+  <br />
+  <br />
+  <div class="form-group">
+    <div class="col-sm-4">
+      <button type="button" class="btn btn-default btn-group btn-group-justified" data-dismiss="modal"><i  class="glyphicon glyphicon-remove"></i> Nicht löschen</button>
+    </div>
+    <div class="col-sm-offset-4 col-sm-4">
+      <a href="{{urlFor('/project/informationarchitecture/deleteall', {ID:project.ID,CONFIRMED:"true"})}}" class="btn btn-danger btn-group btn-group-justified"><i  class="glyphicon glyphicon-trash"></i> IA löschen</a>
+    </div>
+  </div>
+  <br /><br />
+</div>

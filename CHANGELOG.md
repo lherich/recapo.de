@@ -6,6 +6,11 @@ The following shortcuts will be used:
 "~": fixed bug
 
 ```
+## 1.3
++ Add recapo.xml configuration file
++ Add library as submodul for Upload
+~ Add folder app and folder web
+
 ## 1.2
 + back-end: display current version of recapo in the footer, added constant for the version within the index.php
 + back-end: added export of extended informationarchitecture to XML for ReCaLys which contains only the cards (every container will be replaced by its cards), so the export can not be imported again

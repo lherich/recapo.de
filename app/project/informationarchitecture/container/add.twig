@@ -1,0 +1,59 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">
+            <span class="glyphicon glyphicon-plus"></span>
+            Container erstellen</h4>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" role="form" action="{{urlFor('/project/informationarchitecture/container/add', {ID:project.ID,CONFIRMED:true})}}" method="post">
+            <div class="form-group">
+                <label for="containerName" class="col-sm-3 control-label">Containername</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control focus" id="containerName" name="containerName" placeholder="Name des Container">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-6">
+                    Kartenliste<br/>
+                    Karten könne per Drag and Drop in den Container gezogen werden<br/><br/>
+
+                    <ul class="clearfix pill-group" id="itemSortable" class="connectedSortable">
+
+                        {% for item in projectItems %}
+                            <li class="" data-id="{{item.ID}}" data-name="{{item.name}}">
+                                <span>{{item.name}}</span>
+                                {% if item.flag == "child" %}
+                                    <span class="glyphicon glyphicon-close">
+                                        <span class="sr-only">Remove</span>
+                                    </span>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    Liste der Karten die sich im Container befinden<br/><br/>
+                    <ul id="containerSortable" class="connectedSortable"></ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="form-group">
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-default btn-group btn-group-justified" data-dismiss="modal">
+                        <i class="glyphicon glyphicon-remove"></i>
+                        Abbrechen</button>
+                </div>
+                <div class="col-sm-offset-4 col-sm-4">
+                    <button type="submit" class="btn btn-success btn-group btn-group-justified">
+                        <i class="glyphicon glyphicon-ok"></i>
+                        Container erstellen</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

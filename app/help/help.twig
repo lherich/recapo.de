@@ -1,0 +1,617 @@
+{% include 'hooter/header.twig' %}
+{% include 'hooter/brand.twig' %}
+{% include 'hooter/breadcrumb.twig' %}
+{% include 'hooter/flash.twig' %}
+
+<div class="container">
+    <div class="row">
+        {% if user is not null %}
+            <div class="col-xs-12 col-md-3">
+                {% include 'hooter/navigation.twig' %}
+            </div>
+
+            <div class="col-xs-12 col-md-9">
+            {% else %}
+                <div class="col-xs-12 col-md-12">
+                {% endif %}
+                <div class="well">
+                    <h1>
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                        Spezifikationen
+                        <small>Aufgelistet sind die Spezifikationen für die einzelnen Ex- und Importdateien.</small>
+                    </h1>
+
+                    <h3>Exporte als XML</h3>
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-success">
+
+                            <div class="panel-title btn-group btn-group-justified">
+                                <a style="text-align: left;" data-toggle="collapse" data-parent="#accordion" href="#collapseReport" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-record"></span>
+                                    Gesamt Report<span class="pull-right">
+                                        <span class="caret"></span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div id="collapseReport" class="panel-collapse collapse">
+                                <div class="panel-body" style="padding: 50px;">
+                                    <h3 style="margin-top: 0px;">Aufbau der XML</h3>
+                                    Das Tag
+                                    <i>cardsort</i>
+                                    ist das Wurzelelement und beinhaltet beliebig viele Elemente
+                                    <i>exp_user_id</i>, welches jeweils exakt ein Experiment beschreibt.<br/>
+                                    Jedes Experiment
+                                    <i>exp_user_id</i>
+                                    hat für jede ausgeführte Aufgabe das Element
+                                    <i>wanted_item</i>. In diesem sind die Elemente
+                                    <i>item</i>, welche jeden Klick während einer Aufgabe
+                                    <i>wanted_item</i>
+                                    beschreiben.<br/><br/>
+                                    <code>{% include 'help/reporttemplate.twig'%}</code>
+
+                                    <h4>Attribute für
+                                        <i>exp_user_id</i>
+                                    </h4>
+                                    <dl class="dl-horizontal" style="padding: 5px;">
+                                        <dt>resultID</dt>
+                                        <dd>ID eines Experiments</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>resultDuration</dt>
+                                        <dd>Differenz von
+                                            <i>resultStartDatetime</i>
+                                            und
+                                            <i>resultEndDatetime</i>. Ergo die Dauer des Experiments im Format "HH:ii:ss.uuuuuu"</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>resultStartDatetime</dt>
+                                        <dd>Zeitpunkt beim Start des Experiments im Format "YYYY-MM-DD HH:ii:ss.uuuuuu"</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>resultEndDatetime</dt>
+                                        <dd>Zeitpunkt beim Beenden bzw. letzten Aufruf (=Timeout) des Experiments im Format "YYYY-MM-DD HH:ii:ss.uuuuuu"</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+                                    </dl>
+
+                                    <h4>Attribute für
+                                        <i>wanted_item
+                                        </i>
+                                    </h4>
+                                    <dl class="dl-horizontal" style="padding: 5px;">
+                                        <dt>resultTaskItemName</dt>
+                                        <dd>Der Kartenname von der Karte die gesucht wird. Der Name
+                                            <i>Dummy</i>
+                                            ist dabei immer die Wurzel bzw. die Startseite.</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>resultTaskFlag</dt>
+                                        <dd>Das Ergebnis (mögliche Werte: miss, hit, unkown, skipped) der Aufgabe. Wenn die Aufgabe vom Probanden übersprungen wurde erscheint ein
+                                            <i>skipped</i>. Nach dem Klick auf den Button
+                                            <i>Es sollte hier zu finden sein</i>
+                                            wird ein
+                                            <i>hit</i>
+                                            bzw.
+                                            <i>miss</i>
+                                            ausgegeben, wenn sich der Proband auf der gesuchten Karte findet bzw. wenn er sich nicht auf der gesuchten Karte befindet.
+                                            <i>unknown</i>
+                                            bedeutet, dass der Proband die Aufgabe weder übersprungen hat, noch auf den Button
+                                            <i>Es sollte hier zu finden sein</i>
+                                            geklickt hat. Es kann in dem Fall davon ausgegangen werden, dass der Proband das Experiment abgebrochen hat, in dem er z.B. den Browser geschlossen hat oder ein Timeout entstand.</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>resultTaskItemID</dt>
+                                        <dd>Die ID der Karte in der Datenbank, die gesucht wird.</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>resultTaskID</dt>
+                                        <dd>Die ID dieser Aufgabe in der Datenbank.</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>resultTaskStartDatetime</dt>
+                                        <dd>Zeitpunkt beim Start der Aufgabe im Format "YYYY-MM-DD HH:ii:ss.uuuuuu"</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>resultTaskEndDatetime:</dt>
+                                        <dd>Wenn
+                                            <i>resultTaskFlag</i>
+                                            den Wert
+                                            <i>miss</i>
+                                            oder
+                                            <i>hit</i>
+                                            hat beinhaltet
+                                            <i>resultTaskEndDatetime</i>
+                                            den Zeitpunkt beim Klick auf den Button
+                                            <i>Es sollte hier zu finden sein</i>. Sollte
+                                            <i>resultTaskFlag</i>
+                                            den Wert
+                                            <i>skipped</i>
+                                            haben ist es der Zeitpunkt an dem der Proband die Aufgabe übersprungen hat. Andernfalls besitzt
+                                            <i>resultTaskFlag</i>
+                                            den Wert
+                                            <i>unkown</i>
+                                            und
+                                            <i>resultTaskEndDatetime</i>
+                                            bezeichnet den letzten Aufruf des Experiments bei dieser Aufgabe. Das Format ist "YYYY-MM-DD HH:ii:ss.uuuuuu"</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>resultTaskDuration</dt>
+                                        <dd>Differenz von
+                                            <i>resultTaskStartDatetime</i>
+                                            und
+                                            <i>resultTaskEndDatetime</i>. Ergo die Bearbeitungszeit der Aufgabe im Format "HH:ii:ss.uuuuuu"</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+                                    </dl>
+
+                                    <h4>Attribute für
+                                        <i>item</i>
+                                    </h4>
+                                    <dl class="dl-horizontal" style="padding: 5px;">
+                                        <dt>itemName</dt>
+                                        <dd>Der Name der Karte.</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>itemID</dt>
+                                        <dd>Die ID der Karte in der Datenbank.</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>itemResultTaskID</dt>
+                                        <dd>Die ID der Aufgabe in der Datenbank. Ergo der Wert des Attributs
+                                            <i>resultTaskID</i>
+                                            von
+                                            <i>wanted_item</i>. Dass heißt die ID der Aufgabe in der diese Karte besucht wurde.
+                                        </dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>itemDatetime</dt>
+                                        <dd>Der Zeitpunkt zu dem diese Karte besucht wurde im Format "YYYY-MM-DD HH:ii:ss.uuuuuu"</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>itemRelativeDuration</dt>
+                                        <dd>Differenz in Millisekunden vom Attribut
+                                            <i>itemDatetime</i>
+                                            und vom Attribut
+                                            <i>resultTaskStartDatetime</i>
+                                            des Elternknoten
+                                            <i>wanted_item</i>. Ergo die Dauer vom Beginn der Aufgabe bis zum Klick auf diese Karte im Format "uuuuuu"</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>itemAbsoluteDuration</dt>
+                                        <dd>Differenz in Millisekunden vom Attribut
+                                            <i>itemDatetime</i>
+                                            und vom Attribut
+                                            <i>itemDatetime</i>
+                                            des Vorgängers. Sollte kein Vorgänger vorhanden sein, wird der Wert von
+                                            <i>itemRelativeDuration</i>
+                                            genommen.
+                                            <i>itemAbsoluteDuration</i>
+                                            beinhaltet die Bearbeitungsdauer zwischen dem Besuch von zwei Karten im Format "uuuuuu"</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+                                    </dl>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="thumbnail">
+                                                <a href="{{IMG}}example-dlrg-report-xml.png" data-toggle="lightbox" data-title="Beispiel: Gesamtreport als XML-Datei"><img src="{{IMG}}example-dlrg-report-xml.png" class="img-thumbnail"></a>
+                                                <div class="caption">
+                                                    <h6>Beispiel: Gesamtreport als XML-Datei</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h3>Beispieldatei:</h3>
+                                    <a href="{{baseUrl()}}/example/2014-08-18_-_dlrg_-_report.xml">
+                                        <span class="glyphicon glyphicon-download-alt"></span>
+                                        Report (XML)</a><br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Im- und Exporte als CSV</h3>
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-warning">
+                            <div class="panel-title btn-group btn-group-justified">
+                                <a style="text-align: left;" data-toggle="collapse" data-parent="#accordion" href="#collapseIA" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                    Informationsarchitektur
+                                    <span class="pull-right">
+                                        <span class="caret"></span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div id="collapseIA" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <h3 style="margin-top: 0px;">Aufbau der CSV</h3>
+                                    Die Informationsarchitektur kann in einer CSV-Datei, die aus einem zweidimensionalen Gitter von Zellen besteht, durch eine spezielle Anordnung der Karten abgebildet werden und in Recapo importiert werden.<br/>
+                                    Der Aufbau der Struktur entspricht visuell einer horizontalen Baumstruktur. Jede Karte wird in eine Zelle eingetragen. Rechts von einer Zelle stehen grundsätzlich die Kinderkarten (die Nachfolger). Entsprechend befinden sich links von einer Zelle die
+                                    Elternkarte (der Vorgänger). Falls die Zelle einer Kinderkarten links leer sein sollte, so ist die Elternkarte die nächste Zelle mit Inhalt die darüber steht.<br/>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="thumbnail">
+                                                <a href="{{IMG}}example-dlrg-ia-csv.png" data-toggle="lightbox" data-title="Beispiel: Die Informationsarchitekturvon der DLRG Webseite als CSV-Datei"><img src="{{IMG}}example-dlrg-ia-csv.png" class="img-thumbnail"></a>
+                                                <div class="caption">
+                                                    <h6>Beispiel: Die Informationsarchitektur der DLRG Webseite als CSV-Datei</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="thumbnail">
+                                                <a href="{{IMG}}example-dlrg-screenshot.png" data-toggle="lightbox" data-title="Screenshot der Webseite vom DLRG, dlrg.de von August 2014"><img src="{{IMG}}example-dlrg-screenshot.png" class="img-thumbnail"></a>
+                                                <div class="caption">
+                                                    <h6>Screenshot der Webseite vom DLRG, dlrg.de von August 2014</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h3>Hinweise zum Import</h3>
+                                    Beim Import wird die bereits vorhandene IA komplett gelöscht und neu aufgebaut. Importiert werden nur die Karten und Container dessen Sektionen aktiviert sind. Bereits erstellte Container oder Karten bleiben erhalten, gleichnamige werden
+                                    (case-insensitive) zusammengeführt.
+
+                                    <h3>Spezielle Funktionen</h3>
+                                    Es ist möglich in die Zellen spezielle Befehle zu schreiben, die folgende Tabelle listet diese auf. Wenn in einer Zelle nur ein Kartenname steht, wird standardmäßig
+                                    <i>i(Kartenname)</i>
+                                    ausgeführt. Alternativ könne die folgenden Funktionen in die Zellen eingetragen werden.<br/>
+                                    <dl class="dl-horizontal" style="padding: 5px;">
+                                        <dt>newi(Kartenname):</dt>
+                                        <dd>Erzwingt die Neuerstellung der Karte mit der Bezeichnung "Kartenname".</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>i(Kartenname):</dt>
+                                        <dd>Durchsucht die vorhandenen Karten. Wenn eine Karte mit "Kartenname" (case-insensitive) existiert, werden beide zusammengeführt. Wenn keine Karte existiert, wird eine neue erzeugt (wie bei newc()).</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>newc(Kartenname):</dt>
+                                        <dd>Erzwingt die Neuerstellung des Containers mit der Bezeichnung "Kartenname".</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>c(Kartenname):</dt>
+                                        <dd>Durchsucht die vorhandenen Container. Wenn ein Container mit "Kartenname" (case-insensitive) existiert, werden beide zusammengeführt. Wenn kein Container existiert, wird ein neuer erzeugt (wie bei newc()).</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>id(ID:Kartenname):</dt>
+                                        <dd>Erzeugt eine Karte mit der Bezeichnung "Kartenname" und weiterhin einen Anker mit einer freiwählbaren aber eindeutigen ID. Auf diese ID kann mit Hilfe der "link()" Funktion verlinkt werden. So könne Sprünge und folglich auch Kreise in der IA
+                                            erzeugt werden.</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>link(JID:Kartenname):</dt>
+                                        <dd>Erzeugt eine Karte mit der Bezeichnung "Kartenname" und dem Ziel "JID" (JumpToID). Mit der Funktion "id()" kann, wie beschrieben, eine "ID" definiert werden. Diese definierten "IDs" können als Wert für "JumpToID" eingetragen werden. So kann ein
+                                            Link auf die Karte mit der "ID", die in "JumpToID" steht, erzeugt werden. Es können beliebig viele Links auf eine Karte mit der Funktion "id()" erstellt werden. Die Bezeichnung "Kartenname" ist dabei frei wählbar.</dd>
+                                    </dl>
+
+                                    <h3>Sektionen Definitionen</h3>
+                                    Karten können einzelnen Sektionen zu geordnet werden. Um eine Karte einer Sektion zu zuordnen, wird einer der aufgelisteten Abkürzungen dem Kartennamen oder der Funktion vorangestellt. Zum Beispiel erzwingt "h:newi(Geschichte)" eine neue Karte mit
+                                    dem Namen "Geschichte" in der Sektion "Header".
+                                    <dl class="dl-horizontal" style="padding: 5px;">
+                                        {% for item in sections %}
+                                            <dt>{{item.shortcut}}</dt>
+                                            <dd>Setz das Element in die Sektion
+                                                {{item.section}}</dd>
+                                            <dt>&nbsp;</dt>
+                                            <dd>&nbsp;</dd>
+                                        {% endfor %}
+                                    </dl>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="thumbnail">
+                                                <a name="thomann.de-Screenshot" href="{{IMG}}example-dlrg-ia-csv-extended.png" data-toggle="lightbox" data-title="Beispiel: Die um spezielle Funktionen und Sektionen erweiterte Informationsarchitekturvon der DLRG Webseite als CSV-Datei"><img src="{{IMG}}example-dlrg-ia-csv-extended.png" class="img-thumbnail"></a>
+                                                <div class="caption">
+                                                    <h6>Beispiel: Um Funktionen und Sektionen erweiterte Informationsarchitekturvon der DLRG Webseite als CSV-Datei</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3>Beispieldateien</h3>
+                                    <a href="{{baseUrl()}}/example/2014-08-18_-_dlrg_-_ia-simple.csv">
+                                        <span class="glyphicon glyphicon-download-alt"></span>
+                                        vereinfachter Auszug aus der Informationsarchitektur der DLRG Webseite als CSV</a><br/>
+                                    <a href="{{baseUrl()}}/example/2014-08-18_-_dlrg_-_ia-extended.csv">
+                                        <span class="glyphicon glyphicon-download-alt"></span>
+                                        erweiterter Auszug mit Funktionen und Sektionen aus der Informationsarchitektur der DLRG Webseite (CSV)</a><br/>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-warning">
+                            <div class="panel-title btn-group btn-group-justified">
+                                <a style="text-align: left;" data-toggle="collapse" data-parent="#accordion" href="#collapseCard" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                    Karten
+                                    <span class="pull-right">
+                                        <span class="caret"></span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div id="collapseCard" class="panel-collapse collapse">
+                                <div class="panel-body" style="padding: 50px;">
+                                    <h3 style="margin-top: 0px;">Aufbau der CSV</h3>
+                                    Die Karten können mit Hilfe einer CSV-Datei ex- und importiert werden. Die Karten werden alle in die erste Reihe einer CSV-Datei eingetragen. Je Karte wird eine neue Zelle genutzt.<br/>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="thumbnail">
+                                                <a name="thomann.de-Screenshot" href="{{IMG}}example-dlrg-card-csv.png" data-toggle="lightbox" data-title="Beispiel: Die Karten der DLRG Webseite als CSV-Datei"><img src="{{IMG}}example-dlrg-card-csv.png" class="img-thumbnail"></a>
+                                                <div class="caption">
+                                                    <h6>Beispiel: Die Karten der DLRG Webseite als CSV-Datei</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3>Hinweise zum Import</h3>
+                                    Beim Import bleiben bereits erstellte Karten erhalten, gleichnamige werden (case-insensitive) zusammengeführt.
+
+                                    <h3>Beispieldatei</h3>
+                                    <a href="{{baseUrl()}}/example/2014-08-18_-_dlrg_-_item.csv">
+                                        <span class="glyphicon glyphicon-download-alt"></span>
+                                        Auszug der Karten auf Basis der DLRG Webseite (CSV)</a><br/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-warning">
+                            <div class="panel-title btn-group btn-group-justified">
+                                <a style="text-align: left;" data-toggle="collapse" data-parent="#accordion" href="#collapseContainer" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                    Container
+                                    <span class="pull-right">
+                                        <span class="caret"></span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div id="collapseContainer" class="panel-collapse collapse">
+                                <div class="panel-body" style="padding: 50px;">
+                                    <h3 style="margin-top: 0px;">Aufbau der CSV</h3>
+                                    Die Container können mit Hilfe einer CSV-Datei ex- und importiert werden. Die Containernamen werden in der ersten Spalte untereinander geschrieben. Karten werden rechts von dem Containernamen in der gleichen Zeile notiert. Jede Zelle enthält eine
+                                    Karte.
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="thumbnail">
+                                                <a name="thomann.de-Screenshot" href="{{IMG}}example-dlrg-container-csv.png" data-toggle="lightbox" data-title="Beispiel: Auszug der Container der DLRG Webseite als CSV-Datei"><img src="{{IMG}}example-dlrg-container-csv.png" class="img-thumbnail"></a>
+                                                <div class="caption">
+                                                    <h6>Beispiel: Auszug der Container der DLRG Webseite als CSV-Datei</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3>Hinweise zum Import</h3>
+                                    Beim Import bleiben bereits erstellte Container erhalten, gleichnamige werden neu angelegt.
+
+                                    <h3>Beispieldatei</h3>
+                                    <a href="{{baseUrl()}}/example/2014-08-18_-_dlrg_-_container.csv">
+                                        <span class="glyphicon glyphicon-download-alt"></span>
+                                        Auszug der Container auf Basis der DLRG Webseite (CSV)</a><br/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-warning">
+                            <div class="panel-title btn-group btn-group-justified">
+                                <a style="text-align: left;" data-toggle="collapse" data-parent="#accordion" href="#collapseSection" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-list"></span>
+                                    Sektionen
+                                    <span class="pull-right">
+                                        <span class="caret"></span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div id="collapseSection" class="panel-collapse collapse">
+                                <div class="panel-body" style="padding: 50px;">
+                                    <h3 style="margin-top: 0px;">Aufbau der CSV</h3>
+                                    In die erste Reihe der CSV-Datei werden in jede Zelle die Sektionsnamen eingetragen.
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="thumbnail">
+                                                <a name="thomann.de-Screenshot" href="{{IMG}}example-dlrg-section-csv.png" data-toggle="lightbox" data-title="Beispiel: Sektionen als CSV-Datei"><img src="{{IMG}}example-dlrg-section-csv.png" class="img-thumbnail"></a>
+                                                <div class="caption">
+                                                    <h6>Beispiel: Sektionen als CSV-Datei</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3>Hinweise zum Import</h3>
+                                    Beim Import werden alle Sektionen, die in der CSV-Datei stehen aktiviert. Bereits aktivierte Sektionen, bleiben weiterhin aktiv. Dass heißt es werden beim Import keine Sektion deaktiviert, nur aktiviert.
+
+                                    <h3>Beispieldatei:</h3>
+                                    <a href="{{baseUrl()}}/example/2014-08-18_-_dlrg_-_section.csv">
+                                        <span class="glyphicon glyphicon-download-alt"></span>
+                                        Sektionen (CSV)</a><br/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-warning">
+                            <div class="panel-title btn-group btn-group-justified">
+                                <a style="text-align: left;" data-toggle="collapse" data-parent="#accordion" href="#collapseTask" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-tasks"></span>
+                                    Aufgaben
+                                    <span class="pull-right">
+                                        <span class="caret"></span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div id="collapseTask" class="panel-collapse collapse">
+                                <div class="panel-body" style="padding: 50px;">
+                                    <h3 style="margin-top: 0px;">Aufbau der CSV</h3>
+                                    In jede Zeile der ersten Spalte der CSV-Datei wird eine Aufgabenbeschreibungen eingetragen. In die Zellen der zweiten Spalte wird der Kartenname auf Höhe der Aufgabenbeschreibung der gesuchten Karte eingetragen.<br/>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="thumbnail">
+                                                <a name="thomann.de-Screenshot" href="{{IMG}}example-dlrg-task-csv.png" data-toggle="lightbox" data-title="Beispiel: Aufgaben als CSV-Datei"><img src="{{IMG}}example-dlrg-section-csv.png" class="img-thumbnail"></a>
+                                                <div class="caption">
+                                                    <h6>Beispiel: Aufgaben als CSV-Datei</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h3>Beispieldatei:</h3>
+                                    <a href="{{baseUrl()}}/example/2014-08-18_-_dlrg_-_task.csv">
+                                        <span class="glyphicon glyphicon-download-alt"></span>
+                                        Aufgaben (CSV)</a><br/>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <h3>Exporte als CSV</h3>
+                    <div class="panel-group" id="accordion">
+
+                        <div class="panel panel-info">
+                            <div class="panel-title btn-group btn-group-justified">
+                                <a style="text-align: left;" data-toggle="collapse" data-parent="#accordion" href="#collapseProband" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    Probanden
+                                    <span class="pull-right">
+                                        <span class="caret"></span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div id="collapseProband" class="panel-collapse collapse">
+                                <div class="panel-body" style="padding: 50px;">
+                                    <h3 style="margin-top: 0px;">Aufbau der CSV</h3>
+                                    Die Probanden können nur exportiert - nicht importiert - werden.<br/>
+                                    Jede Zeile beschreibt den Datensatz von einem Probanden. Die Spalten beinhalten die Werte in folgender Reihenfolge:
+
+                                    <dl class="dl-horizontal" style="padding: 5px;">
+                                        <dt>Spalte 1:</dt>
+                                        <dd>ID: eindutige Identifikationsnumer</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>Spalte 2:</dt>
+                                        <dd>E-Mail Adresse</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>Spalte 3:</dt>
+                                        <dd>Vorname</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>Spalte 4:</dt>
+                                        <dd>Nachname</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>Spalte 5:</dt>
+                                        <dd>Zeitpunkt der Eintragung im Format "YYYY-MM-DD HH:ii:ss"</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+                                    </dl>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="thumbnail">
+                                                <a name="thomann.de-Screenshot" href="{{IMG}}example-dlrg-proband-csv.png" data-toggle="lightbox" data-title="Beispiel: Probanden als CSV-Datei"><img src="{{IMG}}example-dlrg-proband-csv.png" class="img-thumbnail"></a>
+                                                <div class="caption">
+                                                    <h6>Beispiel: Probanden als CSV-Datei</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h3>Beispieldatei:</h3>
+                                    <a href="{{baseUrl()}}/example/2014-08-18_-_dlrg_-_proband.csv">
+                                        <span class="glyphicon glyphicon-download-alt"></span>
+                                        Probanden (CSV)</a><br/>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-info">
+                            <div class="panel-title btn-group btn-group-justified">
+                                <a style="text-align: left;" data-toggle="collapse" data-parent="#accordion" href="#collapseReportshort" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-record"></span>
+                                    Reportübersicht
+                                    <span class="pull-right">
+                                        <span class="caret"></span>
+                                    </span>
+                                </a>
+                            </div>
+                            <div id="collapseReportshort" class="panel-collapse collapse">
+                                <div class="panel-body" style="padding: 50px;">
+                                    <h3 style="margin-top: 0px;">Aufbau der CSV</h3>
+                                    Der Export der Reportübersicht beinhaltet alle Experimente, allerdings ohne weitere Daten. Jede Zeile beschreibt den Datensatz von einem Experiment. Die Spalten beinhalten die Werte in folgender Reihenfolge:
+
+                                    <dl class="dl-horizontal" style="padding: 5px;">
+                                        <dt>Spalte 1:</dt>
+                                        <dd>ID: eindutige Identifikationsnumer</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>Spalte 2:</dt>
+                                        <dd>Start des Experiments: Zeitpunkt beim Start des Experiments im Format "YYYY-MM-DD HH:ii:ss"</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>Spalte 3:</dt>
+                                        <dd>Ende des Experiments: Zeitpunkt beim Beenden bzw. letzten Aufruf (=Timeout) des Experiments im Format "YYYY-MM-DD HH:ii:ss"</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+
+                                        <dt>Spalte 4:</dt>
+                                        <dd>Dauer des Experiments: Differenz zwischen Spalte 2 und Spalte 3 im Format "HH:ii:ss"</dd>
+                                        <dt>&nbsp;</dt>
+                                        <dd>&nbsp;</dd>
+                                    </dl>
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="thumbnail">
+                                                <a name="thomann.de-Screenshot" href="{{IMG}}example-dlrg-shortreport-csv.png" data-toggle="lightbox" data-title="Beispiel: Reportübersicht als CSV-Datei"><img src="{{IMG}}example-dlrg-shortreport-csv.png" class="img-thumbnail"></a>
+                                                <div class="caption">
+                                                    <h6>Beispiel: Reportübersicht als CSV-Datei</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h3>Beispieldatei:</h3>
+                                    <a href="{{baseUrl()}}/example/2014-08-18_-_dlrg_-_result.csv">
+                                        <span class="glyphicon glyphicon-download-alt"></span>
+                                        Reportübersicht (CSV)</a><br/>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var REQUIREJS = "{{urlFor('/js/index/index')}}";
+    </script>
+    {% include 'hooter/footer.twig' %}

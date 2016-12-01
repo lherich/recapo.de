@@ -1,0 +1,12 @@
+<script type="text/javascript">
+    {% if REQUIREJS is defined %}
+        var REQUIREJS = "{{ REQUIREJS }}";
+    {% endif %}
+    var BASE = '{{BASE}}';
+    var CURRENT_ROUTE = '{{CURRENT_ROUTE}}';
+    var CURRENT_NAME = '{{CURRENT_NAME}}';
+    var CURRENT_NAME_UNDERSCORE = '{{CURRENT_NAME_UNDERSCORE}}';
+</script>
+<script data-main="{{URLPATH}}app" src="{{ VENDOR }}require.js-2.1.11/require.js"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+{% include 'hooter/header.twig' %}
+
+{% include 'hooter/brand.twig' %}
+
+{% include 'hooter/breadcrumb.twig' %}
+
+{% include 'hooter/flash.twig' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-3">
+            {% include 'hooter/navigation.twig' %}
+        </div>
+
+        <div class="col-xs-12 col-md-9">
+            <div class="well">
+                <h1>Profileinstellungen</h1>
+                <hr/>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a href="#home" data-toggle="tab">
+                            <i class="glyphicon glyphicon-wrench"></i>
+                            Mein Profil</a>
+                    </li>
+                    <li>
+                        <a href="#password" data-toggle="tab">
+                            <i class="glyphicon glyphicon-lock"></i>
+                            Passwort ändern</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home">
+                        <div class="panel panel-default">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">
+                                <h2>Meine allgemeinen Daten</h2>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-striped table-hover">
+                                    <tbody>
+                                        <tr>
+                                            <td>Vor- und Nachname</td>
+                                            <td>
+                                                <a href="#" class="editable" data-type="text" data-pk="{{user.userID}}" data-name="forename" data-value="{{user.forename}}" data-url="{{urlFor('/profile/update', {'FIELD':'forename'})}}" data-title="Vorname">{{user.forename}}
+                                                    <small>
+                                                        <i class="glyphicon glyphicon-pencil"></i>
+                                                    </small>
+                                                </a>
+                                                <a href="#" class="editable" data-type="text" data-pk="{{user.userID}}" data-name="surname" data-value="{{user.surname}}" data-url="{{urlFor('/profile/update', {'FIELD':'surname'})}}" data-title="Nachname">{{user.surname}}
+                                                    <small>
+                                                        <i class="glyphicon glyphicon-pencil"></i>
+                                                    </small>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>E-Mail Adresse</td>
+                                            <td>
+                                                <a href="#" class="editable" data-type="email" data-pk="{{user.userID}}" data-name="email" data-value="{{user.email}}" data-url="{{urlFor('/profile/update', {'FIELD':'email'})}}" data-title="E-Mail Adresse">{{user.email}}
+                                                    <small>
+                                                        <i class="glyphicon glyphicon-pencil"></i>
+                                                    </small>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>UID</td>
+                                            <td>#{{user.UID}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Benutzername</td>
+                                            <td>{{user.login}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Registriert am</td>
+                                            <td>{{user.registrationDatetime}}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Aktive Logins</td>
+                                            <td>Anzahl aktiver Token
+                                                <span class="badge">{{user.currrentTokens}}</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Letzter Login</td>
+                                            <td>{{user.lastToken}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="tab-pane" id="password">
+
+                        <div class="panel panel-default">
+                            <!-- Default panel contents -->
+                            <div class="panel-heading">
+                                <h2>Passwort ändern</h2>
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal validate" role="form" action="{{urlFor('/authentication/changePassword')}}" method="post">
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Benutzeraccount</label>
+                                        <div class="col-md-9">
+                                            <p class="form-control-static">{{user.login}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-warning has-feedback">
+                                        <label for="currentPassword" class="col-md-3 control-label">derzeitiges Passwort</label>
+                                        <div class="col-sm-9">
+                                            <input name="currentPassword" type="password" class="form-control focus" id="currentPassword" placeholder="derzeitiges Passwort" required data-error="Bitte tragen Sie das derzeitige Passwort ein.">
+                                            <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-warning has-feedback">
+                                        <label for="newPassword" class="col-md-3 control-label">neues Passwort</label>
+                                        <div class="col-sm-9">
+                                            <input
+                                                name="newPassword"
+                                                type="password"
+                                                class="form-control"
+                                                id="newPassword"
+                                                placeholder="neues Passwort"
+                                                required
+                                                data-minlength="5"
+                                                maxlength="255"
+                                                data-error="Bitte tragen Sie ein Passwort bestehend aus mindestens 5 bis maximal 255 alphanumerischen Zeichen ein.">
+                                            <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-warning has-feedback">
+                                        <label for="newPassword2" class="col-md-3 control-label">Wiederholung</label>
+                                        <div class="col-sm-9">
+                                            <input name="newPassword2" type="password" class="form-control" id="newPassword2" placeholder="Wiederholung des neuen Passworts" required data-match="#newPassword" data-error="Die beiden Passwörter stimmen nicht überein.">
+                                            <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-3 col-md-9">
+                                            <button type="submit" class="btn btn-warning">Passwort ändern</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var REQUIREJS = "{{urlFor('/js/profile/profile')}}";
+    </script>
+
+    {% include 'hooter/footer.twig' %}

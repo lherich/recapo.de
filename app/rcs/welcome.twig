@@ -1,0 +1,27 @@
+{% include 'hooter/rcs/header.twig' %}
+
+<div class="container" style="padding-top: 5%;">
+    <div class="row">
+        <div class="col-md-12 column">
+
+            <div class="jumbotron">
+                <h1>Recapo
+                    <small>
+                        <div class="label label-default">
+                            <span class="glyphicon glyphicon-cloud"></span>
+                            Willkommensbegrüßung</div>
+                    </small>
+                </h1>
+                <h2>
+                    <small>{{project.name}}</small>
+                </h2>
+                <p>
+                    {{project.welcomeText}}
+                </p>
+            </div>
+            <a class="btn btn-success btn-lg btn-block" href="{{ urlFor('/instruction',{PROJECTURL:project.url}) }}">Weiter zum nächsten Schritt (Anleitung)</a>
+        </div>
+    </div>
+</div>
+
+{% include 'hooter/rcs/footer.twig' %}
