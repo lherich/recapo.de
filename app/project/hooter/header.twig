@@ -1,0 +1,121 @@
+{% include 'hooter/header.twig' %}
+
+{% include 'hooter/brand.twig' %}
+
+{% include 'hooter/breadcrumb.twig' %}
+
+{% include 'hooter/flash.twig' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-3">
+            <div class="well">
+                <h3>{{project.name}}</h3>
+                {%if project.flag == 'public'%}
+                    {%if (project.startDatetime == '0000-00-00 00:00:00') and (project.endDatetime == '0000-00-00 00:00:00')%}
+                        <a href="{{urlFor('/project/timetable',{ID:project.ID})}}" class="btn btn-xs btn-warning">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            Zeitraum eintragen</a>
+                    {%elseif (project.intime == 'active')%}
+                        <input type="text" class="form-control input-sm" value="{{ baseUrl() }}{{ urlFor('/welcome', {PROJECTURL:project.url}) }}">
+                        <small>
+                            <a href="{{ urlFor('/welcome', {PROJECTURL:project.url}) }}" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-link"></span>
+                                Experiment öffnen</a>
+                        </small>
+                        {%else%}
+                        <small>
+                            <a href="{{urlFor('/project/timetable',{ID:project.ID})}}" class="btn btn-default btn-sm">Zeitplanung abgelaufen</a>
+                        </small>
+                        {%endif%}
+                        {%else%}
+                        <small>
+                            <a href="{{urlFor('/project/dashboard',{ID:project.ID})}}" class="btn btn-xs btn-warning">
+                                <i class="glyphicon glyphicon-plus"></i>
+                                im Dashboard veröffentlichen</a>
+                        </small><br/><br/>
+                        {%if project.startDatetime == '0000-00-00 00:00:00'%}
+                            <small>
+                                <a href="{{urlFor('/project/timetable',{ID:project.ID})}}" class="btn btn-xs btn-warning">
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    Zeitraum eintragen</a>
+                            </small>
+                            {%else%}
+                            <small>Zeitraum:
+                                {{project.startDatetime|date("d.m.Y")}}
+                                bis
+                                {%if project.endDatetime == '0000-00-00 00:00:00'%}
+                                    Ende: offen</small>
+                                {%else%}
+                                Ende:
+                                {{project.endDatetime|date("d.m.Y")}}</small>
+                            {%endif%}
+                            {%endif%}
+                            {%endif%}
+
+                            <hr/>
+                            <ul class="nav nav-pills nav-stacked" role="tablist">
+                                <li>
+                                    <a href="{{ urlFor('/project/dashboard', {ID:project.ID}) }}" name="/project/dashboard">
+                                        <span class="glyphicon glyphicon-dashboard"></span>
+                                        Dashboard</a>
+                                </li>
+                                <li>
+                                    <a href="{{ urlFor('/project/text', {ID:project.ID}) }}" name="/project/text">
+                                        <span class="glyphicon glyphicon-text-width"></span>
+                                        Texte</a>
+                                </li>
+                                <li>
+                                    <a href="{{ urlFor('/project/timetable', {ID:project.ID}) }}" name="/project/timetable">
+                                        <span class="glyphicon glyphicon-time"></span>
+                                        Zeitplanung</a>
+                                </li>
+                                <li>
+                                    <a href="{{ urlFor('/project/section', {ID:project.ID}) }}" name="/project/section">
+                                        <span class="glyphicon glyphicon-list"></span>
+                                        Sektionen</a>
+                                </li>
+                                <li>
+                                    <a href="{{ urlFor('/project/informationarchitecture', {ID:project.ID}) }}" name="/project/informationarchitecture">
+                                        <span class="glyphicon glyphicon-list-alt"></span>
+                                        Informationsarchitektur</a>
+                                </li>
+                                <li>
+                                    <a href="{{ urlFor('/project/task', {ID:project.ID}) }}" name="/project/task">
+                                        <span class="glyphicon glyphicon-tasks"></span>
+                                        Aufgaben</a>
+                                </li>
+                                <li>
+                                    <a href="{{ urlFor('/project/proband', {ID:project.ID}) }}" name="/project/proband">
+                                        <span class="glyphicon glyphicon-user"></span>
+                                        Probanden</a>
+                                </li>
+                                <li>
+                                    <a href="{{ urlFor('/project/result', {ID:project.ID}) }}" name="/project/result">
+                                        <span class="glyphicon glyphicon-record"></span>
+                                        Resultate</a>
+                                </li>
+                                <li>
+                                    <a href="{{ urlFor('/project/export', {ID:project.ID}) }}" name="/project/export">
+                                        <span class="glyphicon glyphicon-export"></span>
+                                        Export</a>
+                                </li>
+                                <li>
+                                    <a href="{{ urlFor('/project/import', {ID:project.ID}) }}" name="/project/import">
+                                        <span class="glyphicon glyphicon-import"></span>
+                                        Import</a>
+                                </li>
+                                <li>
+                                    <a href="{{ urlFor('/help') }}">
+                                        <i class="glyphicon glyphicon-info-sign"></i>
+                                        Spezifikationen</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        {% include 'hooter/navigation.twig' %}
+
+                    </div>
+
+                    <div class="col-xs-12 col-md-9">
+                        <div class="well">

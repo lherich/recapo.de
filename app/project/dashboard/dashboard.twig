@@ -1,0 +1,222 @@
+{% include 'project/hooter/header.twig' %}
+
+<div class="tab-pane active" id="home">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <h2>
+                <span class="glyphicon glyphicon-dashboard"></span>
+                Dashboard</h2>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <dl class="dl-horizontal" style="padding: 5px;">
+                        <dt>#ID - Name</dt>
+                        <dd>#{{project.ID}}
+                            -
+                            <a href="#" class="editable" data-type="text" data-pk="{{project.ID}}" data-name="name" data-value="{{project.name}}" data-url="{{urlFor('/project/update', {'FIELD':'name'})}}" data-title="Experimentname">{{project.name}}
+                                <i class="glyphicon glyphicon-pencil"></i>
+                            </a>
+                        </dd>
+                        <dt>&nbsp;</dt>
+                        <dd>&nbsp;</dd>
+
+                        <dt>Typ</dt>
+                        <dd>{{project.type}}</dd>
+                        <dt>&nbsp;</dt>
+                        <dd>&nbsp;</dd>
+
+                        <dt>Erstellt am</dt>
+                        <dd>{{project.createDatetime|date("d.m.Y, H:i:s")}}</dd>
+                        <dt>&nbsp;</dt>
+                        <dd>&nbsp;</dd>
+
+                        <dt>Status</dt>
+                        <dd>
+                            <input
+                                type="checkbox"
+                                name="flagCheckbox"
+                                class="flagCheckbox"
+                                data-on-color="success"
+                                data-off-color="warning"
+                                data-on-text="Veröffentlicht"
+                                data-off-text="Entwurf"
+                                data-wrapper-class="flag flagCheckbox"
+                                data-on-url="{{urlFor('/project/update/flag',{ID:project.ID,FLAG:"
+                                public"})}}"
+                                data-off-url="{{urlFor('/project/update/flag',{ID:project.ID,FLAG:"
+                                protected"})}}"
+                                {% if project.flag == 'public' %}
+                                checked{%endif%}>
+                            <br/>
+                            {#% if project.flag == 'public' %} Veröffentlicht <a href="{{urlFor('/updateproject/flag',{ID:project.ID,FLAG:"protected"})}}" class="label label-default">Experiment zurückziehen</a> {% endif %} {% if project.flag == 'protected' %} Entwurfsphase <a
+                            href="{{urlFor('/updateproject/flag',{ID:project.ID,FLAG:"public"})}}" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-eye-close"></span> Experiment veröffentlichen</a> {% endif %#}
+                        </dd>
+                        <dt>&nbsp;</dt>
+                        <dd>&nbsp;</dd>
+
+                        <dt>
+                            <div style="vertical-align: middle; padding: 5px;">
+                                <p class="form-control-static">Laufzeit</p>
+                            </div>
+                        </dt>
+                        <dd>
+                            {% if (project.startDatetime != "0000-00-00 00:00:00") %}
+                                <a href="{{ urlFor('/project/timetable', {ID:project.ID}) }}" class="">startet am
+                                    {{project.startDatetime|date("d.m.Y")}}
+                                    {% if (project.endDatetime != "0000-00-00 00:00:00") %}
+                                        endet am
+                                        {{project.endDatetime|date("d.m.Y")}}
+                                    {% else %}
+                                        endet nie
+                                    {% endif %}
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+                            {% else %}
+                                <a href="{{urlFor('/project/timetable', {ID:project.ID})}}" class="label label-warning">Zeitplanung festlegen
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </a>
+                            {% endif %}
+                        </dd>
+
+                        <dt>&nbsp;</dt>
+                        <dd>&nbsp;</dd>
+
+                        <dt>
+                            <div style="vertical-align: middle; padding: 5px;">
+                                <p class="form-control-static">URL</p>
+                            </div>
+                        </dt>
+                        <dd>
+                            <div class="input-group">
+                                <input type="text" class="form-control" value="{{ baseUrl() }}{{ urlFor('/welcome', {PROJECTURL:project.url}) }}">
+                                <div class="input-group-btn">
+                                    <a href="{{ urlFor('/welcome', {PROJECTURL:project.url}) }}" class="btn btn-default">
+                                        <span class="glyphicon glyphicon-link"></span>
+                                        öffnen</a>
+                                </div>
+                            </div>
+                        </dd>
+                    </dl>
+                </div>
+                {# <div class="col-md-6 col-md-offset-3"> <div class="form-group"> <div class="btn-group"> <button type="button" class="btn btn-default">Export als CVS Datei <span class="glyphicon glyphicon-export"></span></button> </div> <div class="btn-group">
+                <button type="button" class="btn btn-default">Export als XML Datei <span class="glyphicon glyphicon-export"></span></button> </div> </div> </div> #}
+
+                <div class="col-md-12">
+                    <hr/>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>Texte</h3>
+                            <p>
+
+                                <ul class="list-group">
+                                    {% if (project.welcomeText is empty) %}
+                                        <li class="list-group-item">
+                                            <a href="{{urlFor('/project/text',{ID:project.ID})}}" class="label label-warning">Begrüßungstext erstellen
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="list-group-item">
+                                            <a href="{{urlFor('/project/text',{ID:project.ID})}}">{{project.welcomeText|slice(0, 100)}}
+                                                ...
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% if (project.instructionText is empty) %}
+                                        <li class="list-group-item">
+                                            <a href="{{urlFor('/project/text',{ID:project.ID})}}" class="label label-warning">Einleitungstext erstellen
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="list-group-item">
+                                            <a href="{{urlFor('/project/text',{ID:project.ID})}}">{{project.instructionText|slice(0, 100)}}
+                                                ...
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+
+                                    {% if (project.tributeText is empty) %}
+                                        <li class="list-group-item">
+                                            <a href="{{urlFor('/project/text',{ID:project.ID})}}" class="label label-warning">Danksagung erstellen
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="list-group-item">
+                                            <a href="{{urlFor('/project/text',{ID:project.ID})}}">{{project.tributeText|slice(0, 100)}}
+                                                ...
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <h3>Die letzten Probanden</h3>
+                            {%if probands%}
+                                <ul>
+                                    {%for item in probands%}
+                                        <li>#{{item.ID}}
+                                            -
+                                            {{item.forename}}
+                                            {{item.surname}}
+                                            (<a href="mailto:{{item.email}}">{{item.email}}</a>)</li>
+                                        {%endfor%}
+                                    </ul>
+                                    {%else%}
+                                    <p>Noch keine Daten vorhanden</p>
+                                    {%endif%}
+                                    <p>
+                                        <a href="{{urlFor('/project/proband',{ID:project.ID})}}" class="btn btn-default" role="button">Alle Probanden anzeigen</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="thumbnail">
+                                <div class="caption">
+                                    <h3>Die letzten Resultate</h3>
+                                    {%if results%}
+                                        <ul>
+                                            {%for item in results%}
+                                                <li>#{{item.ID}}
+                                                    - Dauer:
+                                                    {{item.duration}}</li>
+                                                {%endfor%}
+                                            </ul>
+                                            {%else%}
+                                            <p>Noch keine Daten vorhanden</p>
+                                            {%endif%}
+                                            <p>
+                                                <a href="{{urlFor('/project/result',{ID:project.ID})}}" class="btn btn-default" role="button">Alle Resultate anzeigen</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script type="text/javascript">
+                    var REQUIREJS = ["{{urlFor('/js/project/dashboard/dashboard')}}", "vendor/editable"];
+                </script>
+                {% include 'project/hooter/footer.twig' %}

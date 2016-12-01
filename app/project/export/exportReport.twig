@@ -1,0 +1,23 @@
+<?xml version='1.0'?>
+<cardsort>
+{%for result in results%}
+  <exp_user_id value="{{result.ID}}" duration="{{result.duration}}" startDatetime="{{result.startDatetime}}" endDatetime="{{result.endDatetime}}">
+
+{%for resultTask in attribute(resultTasks, result.ID)%}
+    <wanted_item value="{{resultTask.itemName}}" status="{{resultTask.flag}}" itemID="{{resultTask.itemID}}" resultTaskID="{{resultTask.ID}}" startDatetime="{{resultTask.startDatetime}}" endDatetime="{{resultTask.endDatetime}}" duration="{{resultTask.duration}}">{% set itemBeforeDatetime = resultTask.startDatetime %}
+{%for item in attribute(resultData, resultTask.ID)%}
+      <item value="{{item.itemName}}" itemID="{{item.itemID}}" resultTaskID="{{item.resultTaskID}}" datetime="{{item.datetime}}" relativeDuration="{{date_difference(itemBeforeDatetime, item.datetime)}}" absoluteDuration="{{date_difference(resultTask.startDatetime, item.datetime)}}">
+        <ms>{{date_difference(itemBeforeDatetime, item.datetime, 'ms')}}</ms>
+        <us>{{date_difference(itemBeforeDatetime, item.datetime, 'us')}}</us>
+      </item>
+{% set itemBeforeDatetime = item.datetime %}
+{%endfor%}
+    </wanted_item>
+
+{%endfor%}
+
+  </exp_user_id>
+
+{%endfor%}
+
+</cardsort>

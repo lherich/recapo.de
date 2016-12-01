@@ -1,0 +1,137 @@
+.navbar-collapse.collapse {
+  margin-top: 50px;
+}
+.navbar-collapse.collapse.in {
+  margin-top: 0px;
+}
+
+.navbar .navbar-header {
+  height: 100px;
+  min-width: 360px;
+}
+
+a.checkbox {
+  cursor: pointer;
+}
+
+.fuelux .wizard {
+  min-height: 550px;
+}
+
+.fuelux .wizard .input-group .form-control {
+  position: static;
+}
+.fuelux .spinbox.input-group {
+  display: table;
+}
+
+.has-success .selectpicker {
+  border-color: #3c763d;
+}
+.has-error .selectpicker {
+  border-color: #a94442;
+}
+.has-warning .selectpicker {
+  color: #8a6d3b;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+}
+
+fieldset[disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+textarea.input-large {
+  width: 30%;
+}
+
+a.list-group-item:hover {
+  background-color: lightgrey;
+}
+
+.bootstrap-switch-flag {
+  width: 250px;
+}
+
+
+.fuelux .pillbox>.pill-group>.draggable {
+  cursor: move !important;
+  z-index: 999999;
+} 
+a.minimizeable {
+  cursor: pointer;
+}
+.ui-state-hover {
+  background-color: lightgreen;
+}
+.ui-state-active {
+  background-color: green;
+}
+div.dropable {
+  border: 1px dotted black;
+  min-height: 50px;
+  color: lightgrey;
+  font-size: 12px;
+  font-weight: 700;
+  color: #bbb;
+  padding-bottom: 50px;
+}
+div.ui-state-default {
+  border: 1px dashed black;
+}
+
+.colored > p{
+  padding: 10px;
+}
+.colored > h3 {
+  padding: 10px;
+  background-color: #acb5c9;
+  border-radius: 6px;
+}
+.colored > h3 > a {
+  color: #384979;
+}
+
+.connectedSortable{
+  padding: 5px;
+  min-height: 150px;
+  min-width: 150px;
+}
+
+#itemSortable, .pillbox {
+  min-height: 150px;
+  border: 1px dotted orange;
+}
+#containerSortable, ul.fancytree-container {
+  min-height: 150px;
+  border: 2px dotted green;
+}
+
+ul.fancytree-container {
+  min-height: 390px;
+}
+
+.glyphicon.glyphicon-zoom-in.pull-right {
+  margin-top: -8%;
+  margin-right: 4%;
+  background-color: white;
+  padding: 3px;
+}
+
+/*
+div.dropable {
+  min-height: 50px;
+  border: 1px dotted black;
+  color: lightgrey;
+  font-size: 12px;
+  font-weight: 700;
+  color: #bbb;
+  padding-bottom: 50px;
+}
+
+div.dropable span {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+*/

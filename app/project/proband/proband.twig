@@ -1,0 +1,59 @@
+{% include 'project/hooter/header.twig' %}
+
+<div class="tab-pane" id="proband">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <h2>
+                <span class="glyphicon glyphicon-user"></span>
+                E-Mail Adressen der Probanden</h2>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#ID</th>
+                                <th>E-Mail</th>
+                                <th>Vorname</th>
+                                <th>Nachname</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>#ID</th>
+                                <th>E-Mail</th>
+                                <th>Vorname</th>
+                                <th>Nachname</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {% if probands is empty %}
+                                <tr>
+                                    <td colspan="3">Keine Probanden vorhanden</td>
+                                </tr>
+                            {% endif %}
+                            {% for item in probands %}
+                                <tr>
+                                    <td>#{{item.ID}}</td>
+                                    <td>
+                                        <a href="mailto:{{item.email}}">{{item.email}}</a>
+                                    </td>
+                                    <td>{{item.forename}}</td>
+                                    <td>{{item.surname}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <hr/>
+                    <a href="{{urlFor('/project/export/file', {ID:project.ID, NAME:'proband'})}}" class="btn btn-default">
+                        <i class="glyphicon glyphicon-export"></i>
+                        als CSV exportieren</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'project/hooter/footer.twig' %}

@@ -1,0 +1,26 @@
+{% include 'hooter/rcs/header.twig' %}
+
+<div class="container" style="padding-top: 5%;">
+    <div class="row">
+        <div class="col-md-12 column">
+
+            <div class="jumbotron">
+                <h1>Recapo
+                    <small>
+                        <div class="label label-success">
+                            <span class="glyphicon glyphicon-ok"></span>
+                            Experiment erfolgreich abgeschlossen</div>
+                    </small>
+                </h1>
+                <h2>
+                    <small>{{project.name}}</small>
+                </h2>
+                <p>
+                    {{project.tributeText}}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'hooter/rcs/footer.twig' %}

@@ -1,0 +1,462 @@
+<setting>
+    <routes>
+        <route>
+            <name>/project</name>
+            <route>/backend/project/:ID</route>
+            <middleware>LoadViewVariables</middleware>
+            <middleware>LoadViewAuthenticationVariables</middleware>
+            <middleware>LoadViewProjectVariables</middleware>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/</path>
+            <php>project</php>
+            <tpl>project</tpl>
+        </route>
+        <route>
+            <name>/project/delete</name>
+            <route>/backend/project/delete/:NAME</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/</path>
+            <php>delete</php>
+        </route>
+
+        <route>
+            <name>/project/insert</name>
+            <route>/backend/project/insert</route>
+            <middleware>Authentication</middleware>
+            <method>post</method>
+            <path>project/</path>
+            <php>insert</php>
+        </route>
+
+        <route>
+            <name>/project/update</name>
+            <route>/backend/project/update/:FIELD</route>
+            <middleware>Authentication</middleware>
+            <method>post</method>
+            <path>project/</path>
+            <php>update</php>
+        </route>
+
+        <route>
+            <name>/project/update/flag</name>
+            <route>/backend/project/update/flag/:ID/:FLAG</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/</path>
+            <php>updateFlag</php>
+        </route>
+
+        <route>
+            <name>/project/new</name>
+            <route>/backend/project/new</route>
+            <middleware>LoadViewVariables</middleware>
+            <middleware>LoadViewAuthenticationVariables</middleware>
+            <middleware>LoadViewProjectVariables</middleware>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/</path>
+            <tpl>new</tpl>
+            <js>new</js>
+            <php>new</php>
+        </route>
+
+        <!--- dashboard::START -->
+        <route>
+            <name>/project/dashboard</name>
+            <route>/backend/project/dashboard/:ID</route>
+            <middleware>LoadViewVariables</middleware>
+            <middleware>LoadViewAuthenticationVariables</middleware>
+            <middleware>LoadViewProjectVariables</middleware>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/dashboard/</path>
+            <php>dashboard</php>
+            <js>dashboard</js>
+            <tpl>dashboard</tpl>
+        </route>
+        <!--- dashboard::END -->
+
+        <!--- text::START -->
+        <route>
+            <name>/project/text</name>
+            <route>/backend/project/text/:ID</route>
+            <middleware>LoadViewVariables</middleware>
+            <middleware>LoadViewAuthenticationVariables</middleware>
+            <middleware>LoadViewProjectVariables</middleware>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/text/</path>
+            <php>text</php>
+            <tpl>text</tpl>
+        </route>
+
+        <route>
+            <name>/project/text/update</name>
+            <route>/backend/project/text/update/:ID</route>
+            <middleware>Authentication</middleware>
+            <method>post</method>
+            <path>project/text/</path>
+            <php>update</php>
+        </route>
+        <!--- text::END -->
+
+        <!--- informationarchitecture::START -->
+        <route>
+            <name>/project/informationarchitecture</name>
+            <route>/backend/project/informationarchitecture/:ID</route>
+            <middleware>LoadViewVariables</middleware>
+            <middleware>LoadViewAuthenticationVariables</middleware>
+            <middleware>LoadViewProjectVariables</middleware>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/informationarchitecture/</path>
+            <php>informationarchitecture</php>
+            <tpl>informationarchitecture</tpl>
+            <js>informationarchitecture</js>
+        </route>
+
+        <route>
+            <name>/project/informationarchitecture/deleteall</name>
+            <route>/backend/project/informationarchitecture/deleteall/:ID(/:CONFIRMED)</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/informationarchitecture/</path>
+            <php>deleteall</php>
+            <tpl>deleteall</tpl>
+        </route>
+        <route>
+            <name>/project/informationarchitecture/item/add</name>
+            <route>/backend/project/informationarchitecture/item/add/:ID</route>
+            <middleware>Authentication</middleware>
+            <method>post</method>
+            <path>project/informationarchitecture/item/</path>
+            <php>add</php>
+        </route>
+
+        <route>
+            <name>/project/informationarchitecture/item/deleteall</name>
+            <route>/backend/project/informationarchitecture/item/deleteall/:ID(/:CONFIRMED)</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/informationarchitecture/item/</path>
+            <php>deleteall</php>
+            <tpl>deleteall</tpl>
+        </route>
+
+        <route>
+            <name>/project/informationarchitecture/item/link</name>
+            <route>/backend/project/informationarchitecture/item/link/:ID(/:ITEMID(/:CONFIRMED))</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/informationarchitecture/item/</path>
+            <php>link</php>
+            <tpl>link</tpl>
+        </route>
+
+        <route>
+            <name>/project/informationarchitecture/item/delete</name>
+            <route>/backend/project/informationarchitecture/item/delete/:ID(/:ITEMID)</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/informationarchitecture/item/</path>
+            <php>delete</php>
+        </route>
+
+        <route>
+            <name>/project/informationarchitecture/container/deleteall</name>
+            <route>/backend/project/informationarchitecture/container/deleteall/:ID(/:CONFIRMED)</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/informationarchitecture/container/</path>
+            <php>deleteall</php>
+            <tpl>deleteall</tpl>
+        </route>
+
+        <route>
+            <name>/project/informationarchitecture/container/delete</name>
+            <route>/backend/project/informationarchitecture/container/delete/:ID/(:ITEMID(/:CONFIRMED))</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/informationarchitecture/container/</path>
+            <php>delete</php>
+            <tpl>delete</tpl>
+        </route>
+        <route>
+            <name>/project/informationarchitecture/container/add</name>
+            <route>/backend/project/informationarchitecture/container/add/:ID</route>
+            <middleware>Authentication</middleware>
+            <method>post</method>
+            <path>project/informationarchitecture/container/</path>
+            <php>add</php>
+        </route>
+        <route>
+            <name>/project/informationarchitecture/tree/data</name>
+            <route>/backend/project/informationarchitecture/tree/data/:ID</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/informationarchitecture/tree/</path>
+            <php>data</php>
+        </route>
+        <route>
+            <name>/project/informationarchitecture/tree/root</name>
+            <route>/backend/project/informationarchitecture/tree/root/:ID</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/informationarchitecture/tree/</path>
+            <php>root</php>
+        </route>
+        <route>
+            <name>/project/informationarchitecture/tree/section</name>
+            <route>/backend/project/informationarchitecture/tree/section/:ID</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/informationarchitecture/tree/</path>
+            <php>section</php>
+        </route>
+        <route>
+            <name>/project/informationarchitecture/tree/add</name>
+            <route>/backend/project/informationarchitecture/tree/add/:ID</route>
+            <middleware>Authentication</middleware>
+            <method>post</method>
+            <path>project/informationarchitecture/tree/</path>
+            <php>add</php>
+        </route>
+        <route>
+            <name>/project/informationarchitecture/tree/move</name>
+            <route>/backend/project/informationarchitecture/tree/move/:ID</route>
+            <middleware>Authentication</middleware>
+            <method>post</method>
+            <path>project/informationarchitecture/tree/</path>
+            <php>move</php>
+        </route>
+
+        <route>
+            <name>/project/informationarchitecture/tree/delete</name>
+            <route>/backend/project/informationarchitecture/tree/delete/:ID(/:ITEMID(/:CONFIRMED))</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/informationarchitecture/tree/</path>
+            <php>delete</php>
+            <tpl>delete</tpl>
+        </route>
+        <!--- informationarchitecture::END -->
+
+        <!--- timetable::START -->
+        <route>
+            <name>/project/timetable</name>
+            <route>/backend/project/timetable/:ID</route>
+            <middleware>LoadViewVariables</middleware>
+            <middleware>LoadViewAuthenticationVariables</middleware>
+            <middleware>LoadViewProjectVariables</middleware>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/timetable/</path>
+            <php>timetable</php>
+            <tpl>timetable</tpl>
+            <js>timetable</js>
+        </route>
+
+        <route>
+            <name>/updateproject/timetable</name>
+            <route>/backend/updateproject/timetable/:ID</route>
+            <middleware>Authentication</middleware>
+            <method>post</method>
+            <path>project/timetable/</path>
+            <php>update</php>
+        </route>
+        <!--- timetable::END -->
+
+        <!--- result::START -->
+        <route>
+            <name>/project/result</name>
+            <route>/backend/project/result/:ID</route>
+            <middleware>LoadViewVariables</middleware>
+            <middleware>LoadViewAuthenticationVariables</middleware>
+            <middleware>LoadViewProjectVariables</middleware>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/result/</path>
+            <php>result</php>
+            <tpl>result</tpl>
+        </route>
+
+        <route>
+            <name>/project/result/delete</name>
+            <route>/backend/project/result/delete/:ID/:ITEMID(/:CONFIRMED)</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/result/</path>
+            <php>delete</php>
+            <tpl>delete</tpl>
+        </route>
+        <!--- result::END -->
+
+        <!--- proband::START -->
+        <route>
+            <name>/project/proband</name>
+            <route>/backend/project/proband/:ID</route>
+            <middleware>LoadViewVariables</middleware>
+            <middleware>LoadViewAuthenticationVariables</middleware>
+            <middleware>LoadViewProjectVariables</middleware>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/proband/</path>
+            <php>proband</php>
+            <tpl>proband</tpl>
+        </route>
+        <!--- proband::END -->
+
+        <!--- section::START -->
+        <route>
+            <name>/project/section</name>
+            <route>/backend/project/section/:ID</route>
+            <middleware>LoadViewVariables</middleware>
+            <middleware>LoadViewAuthenticationVariables</middleware>
+            <middleware>LoadViewProjectVariables</middleware>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/section/</path>
+            <php>section</php>
+            <tpl>section</tpl>
+            <js>section</js>
+        </route>
+
+        <route>
+            <name>/project/section/update</name>
+            <route>/backend/project/section/update/:ID</route>
+            <middleware>Authentication</middleware>
+            <method>post</method>
+            <path>project/section/</path>
+            <php>update</php>
+        </route>
+        <!--- section::END -->
+
+        <!--- import::START -->
+        <route>
+            <name>/project/import</name>
+            <route>/backend/project/import/:ID</route>
+            <middleware>LoadViewVariables</middleware>
+            <middleware>LoadViewAuthenticationVariables</middleware>
+            <middleware>LoadViewProjectVariables</middleware>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/import/</path>
+            <php>import</php>
+            <tpl>import</tpl>
+            <js>import</js>
+        </route>
+
+        <route>
+            <name>/project/import/file</name>
+            <route>/backend/project/import/file/:ID/:NAME</route>
+            <middleware>Authentication</middleware>
+            <method>post</method>
+            <path>project/import/</path>
+            <php>file</php>
+        </route>
+        <!--- import::END -->
+
+        <!--- export::START -->
+        <route>
+            <name>/project/export</name>
+            <route>/backend/project/export/:ID</route>
+            <middleware>LoadViewVariables</middleware>
+            <middleware>LoadViewAuthenticationVariables</middleware>
+            <middleware>LoadViewProjectVariables</middleware>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/export/</path>
+            <php>export</php>
+            <tpl>export</tpl>
+            <js>export</js>
+        </route>
+
+        <route>
+            <name>/project/exportReport</name>
+            <route>/backend/project/exportReport/:ID</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/export/</path>
+            <php>exportReport</php>
+            <tpl>exportReport</tpl>
+        </route>
+
+        <route>
+            <name>/project/exportInformationarchitectureExtended</name>
+            <route>/backend/project/exportInformationarchitectureExtended/:ID</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/export/</path>
+            <php>exportInformationarchitectureExtended</php>
+            <tpl>exportInformationarchitectureExtended</tpl>
+        </route>
+
+        <route>
+            <name>/project/export/file</name>
+            <route>/backend/project/export/file/:ID/:NAME</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/export/</path>
+            <php>file</php>
+        </route>
+        <!--- export::END -->
+
+        <!--- task::START -->
+
+        <route>
+            <name>/project/task</name>
+            <route>/backend/project/task/:ID</route>
+            <middleware>LoadViewVariables</middleware>
+            <middleware>LoadViewAuthenticationVariables</middleware>
+            <middleware>LoadViewProjectVariables</middleware>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/task/</path>
+            <php>task</php>
+            <js>task</js>
+            <tpl>task</tpl>
+        </route>
+
+        <route>
+            <name>/project/task/update</name>
+            <route>/backend/project/task/update</route>
+            <middleware>Authentication</middleware>
+            <method>post</method>
+            <path>project/task/</path>
+            <php>update</php>
+        </route>
+
+        <route>
+            <name>/project/task/create</name>
+            <route>/backend/project/task/create/:ID</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/task/</path>
+            <php>create</php>
+            <tpl>create</tpl>
+        </route>
+
+        <route>
+            <name>/project/task/insert</name>
+            <route>/backend/project/task/insert/:ID</route>
+            <middleware>Authentication</middleware>
+            <method>post</method>
+            <path>project/task/</path>
+            <php>insert</php>
+        </route>
+
+        <route>
+            <name>/project/task/delete</name>
+            <route>/backend/project/task/delete/:ID/:ITEMID(/:CONFIRMED)</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>project/task/</path>
+            <php>delete</php>
+            <tpl>delete</tpl>
+        </route>
+        <!--- task::END -->
+
+    </routes>
+</setting>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+
+    <title>{{ PAGETITLE }}</title>
+    <!-- HTML5-ready -->
+    <link href="{{VENDOR}}normalize-3.0.1/normalize.css" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{VENDOR}}bootstrap-3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{VENDOR}}bootstrap-3.1.1/css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <!-- jquery-ui -->
+    <link href="{{VENDOR}}jquery-ui-1.10.4/css/flick/jquery-ui.min.css" rel="stylesheet">
+    <link href="{{VENDOR}}jquery-ui-1.10.4/css/flick/jquery.ui.theme.css" rel="stylesheet">
+
+    {% if REQUIRECSS is defined %}
+    <!-- Custom CSS -->
+    <link href="{{CSS}}{{REQUIRECSS}}.css" rel="stylesheet">
+    {% endif %}
+  </head>
+  <body>

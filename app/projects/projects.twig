@@ -1,0 +1,104 @@
+{% include 'hooter/header.twig' %}
+
+{% include 'hooter/brand.twig' %}
+
+{% include 'hooter/breadcrumb.twig' %}
+
+{% include 'hooter/flash.twig' %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-md-3">
+            {% include 'hooter/navigation.twig' %}
+        </div>
+
+        <div class="col-xs-12 col-md-9">
+            <div class="well">
+                <h1>Verwaltung der Experimente</h1>
+                <hr/>
+
+                <table class="dataTable table table-striped table-bordered" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Typ</th>
+                            <th>Laufzeit</th>
+                            <th>Aktion</th>
+                        </tr>
+                    </thead>
+
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Typ</th>
+                            <th>Laufzeit</th>
+                            <th>Aktion</th>
+                        </tr>
+                    </tfoot>
+
+                    <tbody>
+                        {% for item in projects %}
+                            <tr>
+                                <td class="col-md-6">
+                                    <a href="#" class="editable" data-type="text" data-pk="{{item.ID}}" data-name="name" data-value="{{item.name}}" data-url="{{urlFor('/project/update', {'FIELD':'name'})}}" data-title="Projektname">{{item.name}}
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="#" class="editable flag" data-type="select" data-pk="{{item.ID}}" data-name="flag" data-value="{{item.flag}}" data-url="{{urlFor('/project/update', {'FIELD':'flag'})}}" data-title="Status">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                    <!--<input type="checkbox" name="flagCheckbox" class="flagCheckbox"  data-on-color="success" data-off-color="warning" data-on-text="Veröffentlicht" data-off-text="Entwurf" data-wrapper-class="flag flagCheckbox" data-on-url="{{urlFor('/project/update/flag',{ID:item.ID,FLAG:"public"})}}" data-off-url="{{urlFor('/project/update/flag',{ID:item.ID,FLAG:"protected"})}}" {% if item.flag == 'public' %}checked{%endif%}>//-->
+                                </td>
+                                <td>{{item.type}}</td>
+                                {%if item.flag == 'public'%}
+                                    <td>
+                                        {%if (item.startDatetime == '0000-00-00 00:00:00') and (item.endDatetime == '0000-00-00 00:00:00')%}
+                                            <a href="{{urlFor('/project/timetable',{ID:item.ID})}}" class="btn btn-xs btn-danger">
+                                                <i class="glyphicon glyphicon-plus"></i>
+                                                Datum eintragen</a>
+                                        {%elseif (item.endDatetime == '0000-00-00 00:00:00')%}{{item.startDatetime|date("d.m.Y")}}
+                                            bis Ende offen
+                                            {%else%}{{item.startDatetime|date("d.m.Y")}}
+                                            bis
+                                            {{item.endDatetime|date("d.m.Y")}}
+                                            {%endif%}
+                                        </td>
+                                        {%else%}
+                                        <td>
+                                            {%if item.startDatetime == '0000-00-00 00:00:00'%}-{%else%}{{item.startDatetime|date("d.m.Y")}}
+                                                bis
+                                                {%endif%}
+                                                {%if item.endDatetime == '0000-00-00 00:00:00'%}-{%else%}{{item.endDatetime|date("d.m.Y")}}{%endif%}</td>
+                                                {%endif%}
+                                                <td class="col-md-3">
+                                                    <div class="btn-group btn-group-justified">
+                                                        <a href="{{urlFor('/welcome', {PROJECTURL:item.url})}}" class="btn btn-default">
+                                                            <span class="glyphicon glyphicon-link"></span>
+                                                        </a>
+                                                        <a href="{{ urlFor('/project', {'ID':item.ID}) }}" class="btn btn-default">
+                                                            <i class="glyphicon glyphicon-wrench"></i>
+                                                        </a>
+                                                        <a href="{{urlFor('/projects/delete', {ID:item.ID})}}" class="btn btn-default" data-toggle="modal" data-target=".modalTemplate">
+                                                            <span class="glyphicon glyphicon-trash"></span>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {% include 'hooter/modal.twig' %}
+
+                <script type="text/javascript">
+                    var REQUIREJS = ["{{urlFor('/js/projects/projects')}}", "{{urlFor('/js/project/dashboard/dashboard')}}"];
+                </script>
+
+                {% include 'hooter/footer.twig' %}

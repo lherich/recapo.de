@@ -1,0 +1,33 @@
+{% include 'hooter/header.twig' %}
+
+{% include 'hooter/brand.twig' %}
+
+{% include 'hooter/breadcrumb.twig' %}
+
+{% include 'hooter/flash.twig' %}
+
+<div class="container">
+    <div class="row">
+        {% if user is not null %}
+            <div class="col-xs-12 col-md-3">
+                {% include 'hooter/navigation.twig' %}
+            </div>
+
+            <div class="col-xs-12 col-md-9">
+            {% else %}
+                <div class="col-xs-12 col-md-12">
+                {% endif %}
+                <div class="well">
+                    <h1>Datenschutzerklärung</h1>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            Die personenbezogenen Daten die vom Probanden während eines Experiments optional eingegeben werden können und die Experimentergebnisse werden bis auf die ID des Projekts unabhängig von einander gespeichert. Die Daten können nur vom Projektersteller
+                            und von den Verantwortlichen dieser Seite eingesehen werden. Die Daten werden von den Verantwortlichen dieser Seite nicht an Dritte weitergegeben.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'hooter/footer.twig' %}

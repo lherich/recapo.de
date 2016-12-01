@@ -1,0 +1,267 @@
+{% include 'project/hooter/header.twig' %}
+
+
+          <div class="tab-pane" id="informationarchitecture">
+            <div class="panel panel-default">
+              <!-- Default panel contents -->
+              <div class="panel-heading"><h2><span class="glyphicon glyphicon-th"></span> Erstellen der Informationsarchitektur</h2></div>
+              <div class="panel-body">
+                <div class="row">
+
+                  <div class="col-md-12">
+
+                    <div class="panel-group" id="accordion">
+                      <div class="panel panel-primary">
+                        <div class="panel-title btn-group btn-group-justified">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="btn btn-default">Anleitung <span class="caret"></span></a>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                          <div class="panel-body" style="padding: 50px;">
+                            <b>Karten und Container</b>
+                            Auf der linken Seite befinden sich die verfügbaren Karten und Container in einem mit orangen Punkten umrandeten Bereich (im Folgenden als Karten- und Containerbereich bezeichnet). Die einzelnen Elemente können angeklickt und gezogen werden.<br /><br />
+                            
+                            <b>Informationsarchitektur</b><br />
+                            Der mit grünen Punkten umrandete Bereich auf der rechten Seite ist der Informationsarchitekturbereich. In ihm befindet sich eine Baumstruktur wie man sie aus der Datenverwaltung kennt. Die Ordner repräsentieren die Sektionen, die Dateien stehen für die Karten oder Container. Angezeigt werden nur die aktivierten <a href="{{urlFor('/project/section', {ID:project.ID})}}"><span class="glyphicon glyphicon-list"></span> Sektionen</a>. Nur die Dateien können beliebig in der Baumstruktur verschoben werden.<br /><br />
+                            
+                            <b>Funktion</b><br />
+                            Die Karten oder Container können aus ihrem Bereich per Drag'n'Drop (Ziehen und Ablegen) in einen Ordner (nicht in Dateien) in der Baumstruktur im Bereich der Informationsarchitektur gezogen werden.<br /><br />
+                            
+                            <b>Karte erstellen und löschen</b>
+                            Um eine neue Karte hinzuzufügen muss der gewünschte Kartenname in das Formularfeld im Kartenbereich eingegeben und die Taste Enter gedrückt oder alternativ der Button mit dem Symbol Plus geklickt werden. Gelöscht werden können die einzelnen Karten per Klick auf das Kreuz. Die gelöschte Karte wird dabei automatisch mit allen Unterkarten aus der Informationsarchitektur gelöscht. <br /><br />
+                            
+                            <b>Container erstellen und löschen</b><br />
+                            Ein neuer Container kann über das Dropdown <i>verwalten</i> bei Container und mit Klick auf <i>Container erstellen</i> angelegt werden. Dazu öffnet sich ein Modal in dem es ebenfalls einen Kartenbereich gibt. Die verfügbaren Karten können von dort in den mit grünen Punkten umrandeten Bereich gezogen werden, um sie dem neuen Container zu zuweisen. Der Name des Containers kann im oberen Bereich des Modals angegeben werden. Gelöscht werden können die Container ebenfalls per Klick auf das Kreuz. Dadurch werden sie ebenfalls mit allen Unterkarten aus der Informationsarchitektur gelöscht.<br />
+                            Container sind dafür da, um wiederkehrende Karten, wie z.B. "Impressum", "Kontakt" o.ä. zu gruppieren, um die Informationsarchitektur übersichtlich halten zu können.<br /><br />
+                            
+                            <b>Karten und Container in der Informationsarchitektur löschen</b><br />
+                            Um eine Karte oder einen Container in der Informationsarchitektur zu löschen, selektiert man das gewünschte Element, klickt auf das Dropdown <i>verwalten</i> und wählt dort <i>Ausgewählten Knoten mit Unterknoten löschen</i>. Dadurch wird das Element aus der Stuktur gelöscht und alle darunter befindlichen Elemente. <br /><br />
+                            
+                            <b>Links oder Kreise innerhalb der Informationsarchitektur erstellen</b><br />
+                            Es können Links in der Informationsarchitektur angelegt werden. Dass hießt, bei der Durchführung des Experiments klickt der Proband auf eine Karte, die ein Link ist, und springt so zu einer anderen Karte in der Architektur. Dadurch können auch Kreise innerhalb der IA erstellt werden.<br />
+                            Um einen Link anzulegen, muss zuerst die gewünschte Zielkarte innerhalb der Informationsarchitektur ausgewählt werden. Anschließend kann über das Dropdown <i>verwalten</i> und dort mit Klick auf den Unterpunkt <i>Link für ausgewählten Knoten erzeugen</i> ein Dialogfenster geöffnet werden. In diesem Formular kann der Linkname festgelegt werden.<br /><br />
+                            
+                            <b>Im- und Export</b><br />
+                            Erstellt werden kann die IA auch über eine XML oder CSV Datei. Mehr dazu unter <a href="{{urlFor('/project/import', {ID:project.ID})}}"><span class="glyphicon glyphicon-import"></span> Import</a> und <a href="{{urlFor('/project/export', {ID:project.ID})}}"><span class="glyphicon glyphicon-export"></span> Export</a>.<br /><br />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="col-md-6">
+                    <h3>
+                      Karten
+                      <small class="btn-group pull-right">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">verwalten <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="{{urlFor('/project/informationarchitecture/item/deleteall', {ID:project.ID})}}" data-toggle="modal" data-target=".modalTemplate"><span class="glyphicon glyphicon-trash"></span> Alle Karten löschen</a></li>
+                          <li><a href="{{urlFor('/project/export/file',{ID:project.ID,NAME:"item"})}}"><span class="glyphicon glyphicon-export"></span> Karten exportieren</a></li>
+                          <li><a href="{{urlFor('/project/import',{ID:project.ID})}}"><span class="glyphicon glyphicon-import"></span> Karten importieren</a></li>
+                        </ul>
+                      </small>
+                    </h3>
+                    <div id="itemPillbox" class="pillbox" data-onaddurl="{{urlFor('/project/informationarchitecture/item/add',{ID:project.ID})}}" data-onremoveurl="{{urlFor('/project/informationarchitecture/item/delete',{ID:project.ID})}}">
+                      <ul class="clearfix pill-group">
+
+                        {% for item in projectItems %}
+                        <li class="btn btn-default pill draggable" data-id="{{item.ID}}" data-name="{{item.name}}" data-flag="item">
+                          <span>{{item.name}}</span>
+                          {% if item.flag == "item" %}
+                          <span class="glyphicon glyphicon-close">
+                            <span class="sr-only">Remove</span>
+                          </span>
+                          {% endif %}
+                        </li>
+                        {% endfor %}
+
+                        <li class="pillbox-input-wrap btn-group">
+                        <form class="form-inline">
+                          <input type="text" class="form-control dropdown-toggle pillbox-add-item" placeholder="Karte hinzufügen" style="border: 1px solid lightgrey;">
+                          <a href="#" id="saveCard" class="btn btn-default btn-sn"><span class="glyphicon glyphicon-plus"></span></a>
+                        </form>
+                        </li>
+                      </ul>
+                    </div>
+
+
+
+                    <h3>Container 
+                      <small class="btn-group pull-right">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">verwalten <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#" data-toggle="modal" data-target="#addContainer"><span class="glyphicon glyphicon-plus"></span> eine neuen Container erstellen</a></li>
+                          <li><a href="{{urlFor('/project/informationarchitecture/container/deleteall', {ID:project.ID})}}" data-toggle="modal" data-target=".modalTemplate"><span class="glyphicon glyphicon-trash"></span> Alle Container löschen</a></li>
+                          <li><a href="{{urlFor('/project/export/file',{ID:project.ID,NAME:"container"})}}"><span class="glyphicon glyphicon-export"></span> Container exportieren</a></li>
+                          <li><a href="{{urlFor('/project/import',{ID:project.ID})}}"><span class="glyphicon glyphicon-import"></span> Container importieren</a></li>
+                        </ul>
+                      </small>
+                    </h3>
+                    <div id="containerPillbox" class="pillbox" data-initialize="pillbox" data-onremoveurl="{{urlFor('/project/informationarchitecture/container/delete',{ID:project.ID})}}">
+                      <ul class="clearfix pill-group">
+                        {% for item in projectContainers %}
+                        <li class="btn btn-default pill draggable" data-id="{{item.ID}}" data-name="{{item.name}}" data-flag="container">
+                          <span>{{item.name}}</span>
+                          <span class="glyphicon glyphicon-close"><span class="sr-only">Remove</span></span>
+                        </li>
+                        {% endfor %}
+                      </ul>
+                    </div><br />
+
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <h3>
+                      Informationsarchitektur
+                      <small class="btn-group pull-right">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">verwalten <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="{{urlFor('/project/informationarchitecture/deleteall', {ID:project.ID})}}" data-toggle="modal" data-target=".modalTemplate"><span class="glyphicon glyphicon-trash"></span> gesamte IA löschen</a></li>
+                          <li><a href="{{urlFor('/project/export/file',{ID:project.ID,NAME:"ia"})}}"><span class="glyphicon glyphicon-export"></span> IA exportieren</a></li>
+                          <li><a href="{{urlFor('/project/import',{ID:project.ID})}}"><span class="glyphicon glyphicon-import"></span> IA importieren</a></li>
+                          <li><a href="#" id="treeDeleteSelectedNode"><span class="glyphicon glyphicon-trash"></span> Ausgewählten Knoten mit Unterknoten löschen</a></li>
+                          <li><a href="#" id="treeAddLink"><span class="glyphicon glyphicon-link"></span> Link für ausgewählten Knoten erzeugen</a></li>
+                        </ul>
+                      </small>
+                    </h3>
+
+                  <div id="tree" data-url="{{urlFor('/project/informationarchitecture/tree/data', {ID:project.ID})}}" data-dragdroprooturl="{{urlFor('/project/informationarchitecture/tree/root', {ID:project.ID})}}" data-dragdropaddurl="{{urlFor('/project/informationarchitecture/tree/add', {ID:project.ID})}}" data-dragdropmoveurl="{{urlFor('/project/informationarchitecture/tree/move', {ID:project.ID})}}" data-removenodeurl="{{urlFor('/project/informationarchitecture/tree/delete', {ID:project.ID})}}" data-addlinkurl="{{urlFor('/project/informationarchitecture/item/link', {ID:project.ID})}}"> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+{% include 'hooter/modal.twig' %}
+
+
+<aside>
+  <div class="modal"  id="deleteNodeModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title"><span class="glyphicon glyphicon-trash"></span> Ausgewählte Knoten wirklich löschen?</h4>
+        </div>
+        <div class="modal-body">
+          Soll der ausgewählte Knoten und alle Unterknoten wirklich gelöscht werden?
+          Entfernt werden können nur Karten, keine Sektionen.
+          <br />
+          <br />
+          <div class="form-group">
+            <div class="col-sm-4">
+              <button type="button" class="btn btn-default btn-group btn-group-justified" data-dismiss="modal"><i  class="glyphicon glyphicon-remove"></i> Nicht löschen</button>
+            </div>
+            <div class="col-sm-offset-4 col-sm-4">
+              <a id="btnRemoveNode" class="btn btn-danger btn-group btn-group-justified" data-dismiss="modal"><i  class="glyphicon glyphicon-trash"></i> Knoten löschen</a>
+            </div>
+          </div>
+          <br /><br />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</aside>
+
+<aside>
+<div class="modal" id="addContainer" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title"><span class="glyphicon glyphicon-plus"></span> Container erstellen</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" role="form" action="{{urlFor('/project/informationarchitecture/container/add', {ID:project.ID,CONFIRMED:true})}}" method="post">
+          <div class="form-group has-feedback">
+            <label for="containerName" class="col-sm-3 control-label">Containername</label>
+            <div class="col-sm-9">
+              <div class="has-warning">
+                <input type="text" class="form-control focus" id="containerName" name="containerName" placeholder="Name des Container">
+              </div>
+              <span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>
+              <div class="help-block with-errors">Bitte einen Containernamen eintragen.</div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-6">
+              <h4>Liste der verfügbaren Karten</h4>
+              Karten könne per Drag and Drop in den Container gezogen werden<br /><br />
+            </div>
+            <div class="col-md-6">
+              <h4>Karten im Container</h4>
+              Liste der Karten die sich im Container befinden<br /><br />
+            </div>
+            <div class="col-md-6">
+              <ul id="itemSortable" class="clearfix pill-group connectedSortable">
+                {% for item in projectItems %}
+                <li class="btn btn-default pill" id="item_{{item.ID}}" data-id="{{item.ID}}" data-name="{{item.name}}"><span>{{item.name}}</span></li>
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="col-md-6" class="pillbox" data-initialize="pillbox">
+              <ul id="containerSortable" class="clearfix pill-group connectedSortable">
+              </ul>
+            </div>
+          </div>
+
+          <hr />
+          
+          <div class="form-group">
+            <div class="col-sm-4">
+              <button type="button" class="btn btn-default btn-group btn-group-justified" data-dismiss="modal"><i  class="glyphicon glyphicon-remove"></i> Abbrechen</button>
+            </div>
+            <div class="col-sm-offset-4 col-sm-4">
+              <a href="{{urlFor('/project/informationarchitecture/container/add', {ID:project.ID})}}" id="addContainerSubmit" class="btn btn-success btn-group btn-group-justified" data-dismiss="modal"><i class="glyphicon glyphicon-ok"></i> Container erstellen</a>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</aside>
+
+
+<script type="text/javascript">
+var REQUIREJS = "{{urlFor('/js/project/informationarchitecture/informationarchitecture')}}";
+</script>
+{% include 'project/hooter/footer.twig' %}
+
+
+{#
+
+                      <li class="list-group-item">
+                        <a class="minimizeable">Startseite <span class="glyphicon glyphicon-chevron-down"></span></a>
+                        <ul class="list-group">
+                          <li class="list-group-item">
+                            <div class="dropable">
+                              Header
+                            </div>
+                          </li>
+                          <li class="list-group-item">
+                            <div class="dropable">
+                              Article
+                            </div>
+                          </li>
+                          <li class="list-group-item">
+                            <div class="dropable">
+                              Aside
+                            </div>
+                          </li>
+                          <li class="list-group-item">
+                            <div class="dropable">
+                              Footer
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+#}

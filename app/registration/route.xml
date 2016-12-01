@@ -1,0 +1,28 @@
+<setting>
+    <routes>
+        <route>
+            <name>/registration</name>
+            <route>/backend/registration</route>
+            <method>post</method>
+            <path>registration/</path>
+            <php>registration</php>
+            <sql>registration</sql>
+        </route>
+
+        <route>
+            <name>/registration/check</name>
+            <route>/backend/registration/check</route>
+            <method>get</method>
+            <path>registration/</path>
+            <php>check</php>
+        </route>
+
+        <route>
+            <name>/registration/modal</name>
+            <route>/backend/registration/modal</route>
+            <method>get</method>
+            <path>registration/</path>
+            <tpl>modal</tpl>
+        </route>
+    </routes>
+</setting>

@@ -1,0 +1,67 @@
+<div class="well">
+    <ul class="nav nav-stacked nav-pills">
+        <li><br/></li>
+        <li>Experimente</li>
+        <li>
+            <a href="{{ urlFor('/projects') }}">
+                <i class="glyphicon glyphicon-tasks"></i>
+                Verwaltung</a>
+        </li>
+        <li>
+            <a href="{{ urlFor('/project/new') }}">
+                <i class="glyphicon glyphicon-plus"></i>
+                Experiment erstellen</a>
+        </li>
+        <li><br/></li>
+        {%if selectCurrentProjects%}
+            <li>Meine veröffentlichten Experimente</li>
+            {% for currentProject in selectCurrentProjects %}
+                <li>
+                    <a href="{{ urlFor('/project/dashboard',  {" ID":currentProject.ID}) }}">
+                        <i class="glyphicon glyphicon-cog"></i>
+                        {{currentProject.name}}</a>
+                </li>
+            {% endfor %}
+            {%endif%}
+            <li style="height: 34px;">
+                <select class="selectpicker show-tick" data-live-search="true" id="selectProject">
+                    <option selected style="display:none; visibilty: hidden;">Meine Experimente</option>
+                    <optgroup label="Entworfene Experimente">
+                        {% for elapsedProject in selectElapsedProjects %}
+                            <option value="{{ urlFor('/project/dashboard',  {" ID":elapsedProject.ID}) }}">{{elapsedProject.name}}</option>
+                        {% endfor %}
+                    </optgroup>
+
+                    <optgroup label="Öffentlichte Experimente">
+                        {% for currentProject in selectCurrentProjects %}
+                            <option value="{{ urlFor('/project/dashboard',  {" ID":currentProject.ID}) }}">{{currentProject.name}}</option>
+                        {% endfor %}
+                    </optgroup>
+                </select>
+            </li>
+            <li><br/></li>
+            <li>Verwaltung</li>
+            <li>
+                <a href="{{ urlFor('/profile') }}">
+                    <i class="glyphicon glyphicon-wrench"></i>
+                    Mein Profil</a>
+            </li>
+            <li>
+                <a href="{{ urlFor('/profile') }}#password">
+                    <i class="glyphicon glyphicon-lock"></i>
+                    Passwort ändern</a>
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="{{ urlFor('/help') }}">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                    Spezifikationen</a>
+            </li>
+            <li>
+                <a href="{{ urlFor('/authentication/logout') }}">
+                    <i class="glyphicon glyphicon-off"></i>
+                    Abmelden</a>
+            </li>
+
+        </ul>
+    </div>

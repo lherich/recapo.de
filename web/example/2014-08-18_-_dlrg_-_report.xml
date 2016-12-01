@@ -1,0 +1,62 @@
+<?xml version='1.0'?>
+<cardsort>
+  <exp_user_id value="50" duration="00:00:15.841797" startDatetime="2014-08-18 17:57:41.428992" endDatetime="2014-08-18 17:57:57.270789">
+
+    <wanted_item value="Geschichte" status="skipped" itemID="448" resultTaskID="61" startDatetime="2014-08-18 17:57:43.665320" endDatetime="2014-08-18 17:57:46.215125" duration="00:00:02.549805">
+      <item value="Dummy" itemID="437" resultTaskID="61" datetime="2014-08-18 17:57:45.372351" relativeDuration="709031" absoluteDuration="709031">
+        <ms>709031</ms>
+      </item>
+    </wanted_item>
+
+    <wanted_item value="Geschäftsordnung" status="hit" itemID="479" resultTaskID="62" startDatetime="2014-08-18 17:57:46.354773" endDatetime="2014-08-18 17:57:53.856726" duration="00:00:07.501953">
+      <item value="Dummy" itemID="437" resultTaskID="62" datetime="2014-08-18 17:57:47.578406" relativeDuration="224633" absoluteDuration="224633">
+        <ms>224633</ms>
+      </item>
+
+      <item value="Die DLRG" itemID="438" resultTaskID="62" datetime="2014-08-18 17:57:48.261023" relativeDuration="683617" absoluteDuration="908250">
+        <ms>683617</ms>
+      </item>
+
+      <item value="Selbstverständnis" itemID="440" resultTaskID="62" datetime="2014-08-18 17:57:49.652625" relativeDuration="392602" absoluteDuration="300852">
+        <ms>392602</ms>
+      </item>
+
+      <item value="Ordnungen" itemID="441" resultTaskID="62" datetime="2014-08-18 17:57:50.810828" relativeDuration="159203" absoluteDuration="460055">
+        <ms>159203</ms>
+      </item>
+
+      <item value="Geschäftsordnung" itemID="479" resultTaskID="62" datetime="2014-08-18 17:57:53.071570" relativeDuration="263742" absoluteDuration="723797">
+        <ms>263742</ms>
+      </item>
+    </wanted_item>
+
+    <wanted_item value="Leitsätze" status="miss" itemID="475" resultTaskID="63" startDatetime="2014-08-18 17:57:53.976843" endDatetime="2014-08-18 17:57:57.174109" duration="00:00:03.197266">
+      <item value="Dummy" itemID="437" resultTaskID="63" datetime="2014-08-18 17:57:55.426062" relativeDuration="451219" absoluteDuration="451219">
+        <ms>451219</ms>
+      </item>
+
+      <item value="Lernen" itemID="453" resultTaskID="63" datetime="2014-08-18 17:57:56.100867" relativeDuration="675805" absoluteDuration="127024">
+        <ms>675805</ms>
+      </item>
+    </wanted_item>
+
+
+  </exp_user_id>
+
+  <exp_user_id value="51" duration="00:03:17.089844" startDatetime="2014-08-18 19:43:44.030554" endDatetime="2014-08-18 19:47:01.120398">
+
+    <wanted_item value="Geschichte" status="unknown" itemID="448" resultTaskID="64" startDatetime="2014-08-18 19:43:46.138953" endDatetime="2014-08-18 19:47:01.167273" duration="00:03:15.028320">
+      <item value="Dummy" itemID="437" resultTaskID="64" datetime="2014-08-18 19:43:48.002234" relativeDuration="865281" absoluteDuration="865281">
+        <ms>865281</ms>
+      </item>
+
+      <item value="Dummy" itemID="437" resultTaskID="64" datetime="2014-08-18 19:47:01.194617" relativeDuration="385383" absoluteDuration="250664">
+        <ms>385383</ms>
+      </item>
+    </wanted_item>
+
+
+  </exp_user_id>
+
+
+</cardsort>

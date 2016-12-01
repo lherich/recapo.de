@@ -1,0 +1,25 @@
+<setting>
+    <routes>
+        <route>
+            <name>/profile</name>
+            <route>/backend/profile</route>
+            <middleware>LoadViewVariables</middleware>
+            <middleware>LoadViewAuthenticationVariables</middleware>
+            <middleware>LoadViewProjectVariables</middleware>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>profile/</path>
+            <tpl>profile</tpl>
+            <js>profile</js>
+        </route>
+
+        <route>
+            <name>/profile/update</name>
+            <route>/backend/profile/update/:FIELD</route>
+            <middleware>Authentication</middleware>
+            <method>post</method>
+            <path>profile/</path>
+            <php>update</php>
+        </route>
+    </routes>
+</setting>

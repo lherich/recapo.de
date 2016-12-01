@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">
+        <span class="glyphicon glyphicon-trash"></span>
+        Sollen alle Karten wirklich gelöscht werden?</h4>
+</div>
+<div class="modal-body">
+    Sollen alle Karten vom Projekt "<i>{{project.name}}</i>" wirklich gelöscht werden?<br/>
+    <br/>
+    <div class="form-group">
+        <div class="col-sm-4">
+            <button type="button" class="btn btn-default btn-group btn-group-justified" data-dismiss="modal">
+                <i class="glyphicon glyphicon-remove"></i>
+                Nicht löschen</button>
+        </div>
+        <div class="col-sm-offset-4 col-sm-4">
+            <a href="{{urlFor('/project/informationarchitecture/item/deleteall', {ID:project.ID,CONFIRMED:" true"})}}" class="btn btn-danger btn-group btn-group-justified">
+                <i class="glyphicon glyphicon-trash"></i>
+                Alle löschen</a>
+        </div>
+    </div>
+    <br/><br/>
+</div>

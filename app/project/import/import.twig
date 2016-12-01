@@ -1,0 +1,231 @@
+{% include 'project/hooter/header.twig' %}
+
+<div class="tab-pane" id="import">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <h2>
+                <span class="glyphicon glyphicon-import"></span>
+                Import von CSV Dateien</h2>
+        </div>
+        <div class="panel-body">
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Aufbau der Dateien</h3>
+                </div>
+                <div class="panel-body">
+                    Der Aufbau der exportibaren Daten wird auf der Seite
+                    <a href="{{urlFor('/help')}}">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                        Spezifikationen</a>
+                    beschrieben.
+                </div>
+            </div>
+            <br/>
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="ajaxForm row" id="ia">
+                                <form class="form-inline" role="form" action="{{urlFor('/project/import/file', {ID:project.ID, NAME:" ia"})}}" method="post" enctype="multipart/form-data">
+                                    <div class="col-md-12">
+                                        <h4>
+                                            <span class="glyphicon glyphicon-list-alt"></span>
+                                            Informationsarchitektur
+                                            <small>Die IA wird komplett gelöscht und neu aufgebaut. Importiert werden nur die Karten und Container dessen Sektionen aktiviert sind. Bereits erstellte Container oder Karten bleiben erhalten, gleichnamige werden (case-insensitive) zusammengeführt.</small>
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-6 col-lg-5">
+                                        <input class="form-control" type="file" id="file" name="file">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button type="submit" class="btn btn-default btn-block">IA importieren</button>
+                                    </div>
+                                    <div class="col-md-4 col-lg-4">
+                                        <div class="progress" style="margin-top: 7px;">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%; font-size: 80%;"></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="ajaxForm row" id="item">
+                                <form class="form-inline" role="form" action="{{urlFor('/project/import/file', {ID:project.ID, NAME:" item"})}}" method="post" enctype="multipart/form-data">
+                                    <div class="col-md-12">
+                                        <h4>
+                                            <span class="glyphicon glyphicon-list-alt"></span>
+                                            Karten
+                                            <small>Bereits erstellte Karten bleiben erhalten, gleichnamige werden (case-insensitive) zusammengeführt</small>
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-6 col-lg-5">
+                                        <input class="form-control" type="file" id="file" name="file">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button type="submit" class="btn btn-default btn-block">Karten importieren</button>
+                                    </div>
+                                    <div class="col-md-4 col-lg-4">
+                                        <div class="progress" style="margin-top: 7px;">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%; font-size: 80%;"></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="ajaxForm row" id="container">
+                                <form class="form-inline" role="form" action="{{urlFor('/project/import/file', {ID:project.ID, NAME:" container"})}}" method="post" enctype="multipart/form-data">
+                                    <div class="col-md-12">
+                                        <h4>
+                                            <span class="glyphicon glyphicon-list-alt"></span>
+                                            Container
+                                            <small>Bereits erstellte Container bleiben erhalten, gleichnamige werden neu angelegt.</small>
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-6 col-lg-5">
+                                        <input class="form-control" type="file" id="file" name="file">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button type="submit" class="btn btn-default btn-block">Container importieren</button>
+                                    </div>
+                                    <div class="col-md-4 col-lg-4">
+                                        <div class="progress" style="margin-top: 7px;">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%; font-size: 80%;"></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="ajaxForm row" id="section">
+                                <form class="form-inline" role="form" action="{{urlFor('/project/import/file', {ID:project.ID, NAME:" section"})}}" method="post" enctype="multipart/form-data">
+                                    <div class="col-md-12">
+                                        <h4>
+                                            <span class="glyphicon glyphicon-list"></span>
+                                            Sektionen
+                                            <small>Bereits selektierte Sektionen bleiben beim Import weiterhin aktiv</small>
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-6 col-lg-5">
+                                        <input class="form-control" type="file" id="file" name="file">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button type="submit" class="btn btn-default btn-block">Sektionen importieren</button>
+                                    </div>
+                                    <div class="col-md-3 col-lg-4">
+                                        <div class="progress" style="margin-top: 7px;">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%; font-size: 80%;"></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="ajaxForm row" id="task">
+                                <form class="form-inline" role="form" action="{{urlFor('/project/import/file', {ID:project.ID, NAME:" task"})}}" method="post" enctype="multipart/form-data">
+                                    <div class="col-md-12">
+                                        <h4>
+                                            <span class="glyphicon glyphicon-tasks"></span>
+                                            Aufgaben
+                                            <small>Nicht vorhandene Karten werden neu anglegt, gleichnamige (case-insensitive) werden zusammengeführt</small>
+                                        </h4>
+                                    </div>
+                                    <div class="col-md-6 col-lg-5">
+                                        <input class="form-control" type="file" id="file" name="file">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button type="submit" class="btn btn-default btn-block">Aufgaben importieren</button>
+                                    </div>
+                                    <div class="col-md-4 col-lg-4">
+                                        <div class="progress" style="margin-top: 7px;">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%; font-size: 80%;"></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="instructionImportIA" tabindex="-1" role="dialog" aria-labelledby="instructionImportIA" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Aufbau der CSV Datei beim Import der IA</h4>
+                </div>
+                <div class="modal-body">
+                    Name := Platzhalter für die Bezeichnung des Elements.
+                    <br/>
+                    <h4>Spezielle Funktionen</h4>
+                    <dl class="dl-horizontal" style="padding: 5px;">
+                        <dt>newi(Name):</dt>
+                        <dd>Erzwingt die Neuerstellung der Karte mit der Bezeichnung "Name".</dd>
+                        <dt>&nbsp;</dt>
+                        <dd>&nbsp;</dd>
+
+                        <dt>i(Name):</dt>
+                        <dd>Durchsucht die vorhandenen Karten. Wenn eine Karte mit "Name" (case-insensitive) existiert, werden beide zusammengeführt. Wenn keine Karte existiert, wird eine neue erzeugt (wie bei newc()).</dd>
+                        <dt>&nbsp;</dt>
+                        <dd>&nbsp;</dd>
+
+                        <dt>newc(Name):</dt>
+                        <dd>Erzwingt die Neuerstellung des Containers mit der Bezeichnung "Name".</dd>
+                        <dt>&nbsp;</dt>
+                        <dd>&nbsp;</dd>
+
+                        <dt>c(Name):</dt>
+                        <dd>Durchsucht die vorhandenen Container. Wenn ein Container mit "Name" (case-insensitive) existiert, werden beide zusammengeführt. Wenn kein Container existiert, wird ein neuer erzeugt (wie bei newc()).</dd>
+                    </dl>
+                    Wenn keine Funktion angegeben wird, wird standardmäßig i() ausgeführt.<br/>
+                    <h4>Sektionen Definitionen</h4>
+                    <dl class="dl-horizontal" style="padding: 5px;">
+                        {% for item in sections %}
+                            <dt>{{item.shortcut}}</dt>
+                            <dd>Setz das Element in die Sektion
+                                {{item.section}}</dd>
+                            <dt>&nbsp;</dt>
+                            <dd>&nbsp;</dd>
+                        {% endfor %}
+                    </dl>
+                    <h4>Beispieldatei:</h4>
+                    <a href="{{baseUrl()}}/_container.csv">Container</a><br/>
+                    <a href="{{baseUrl()}}/_items.csv">Karten</a><br/>
+                    <a href="{{baseUrl()}}/_sections.csv">Sektionen</a><br/>
+                    <a href="{{baseUrl()}}/_informationsarchitecture.csv">IA</a><br/>
+
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <button type="button" class="btn btn-default btn-group btn-group-justified" data-dismiss="modal">
+                                <i class="glyphicon glyphicon-remove"></i>
+                                Fenster schließen</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var REQUIREJS = "{{urlFor('/js/project/import/import')}}";
+    </script>
+
+    {% include 'project/hooter/footer.twig' %}

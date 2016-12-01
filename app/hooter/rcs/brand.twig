@@ -1,0 +1,63 @@
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" style="background-image: none; background-color: lightgrey;">
+
+    <div class="container" style="background-color: #ddddff;">
+        <div class="row">
+
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li>
+                        <b>Sie befinden sich hier:</b>
+                    </li>
+                    {%if currentNode.LEVEL == 0%}
+                        <li class="active">Startseite</li>
+                        {%else%}
+                        <li class="active">
+                            <a href="{{urlFor('/experiment',{PROJECTURL:project.url})}}">Startseite</a>
+                        </li>
+                        {%endif%}
+                        {%for item in currentNodeParents%}
+                            <li>
+                                <a href="{{urlFor('/experiment', {PROJECTURL:project.url,ID:item.ID,ITEMID:item.itemID})}}">{{item.name}}</a>
+                            </li>
+
+                            {%endfor%}
+                            {%if currentNode.LEVEL != 0%}
+                                <li class="active">{{currentNode.name}}</li>
+                                {%endif%}
+                            </ol>
+                        </div>
+
+                        <div class="col-lg-5 col-md-6 col-sm-12">
+                            <h2 class="h2-task">
+                                <span class="glyphicon glyphicon-info-sign"></span>
+                                {{currentTask.task}}</h2>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-12">
+                            <a href="{{urlFor('/endtask', {PROJECTURL:project.url,ID:currentNode.ID,ITEMID:currentNode.itemID}) }}" class="btn btn-lg btn-success" style="margin-top: 7px;">
+                                <span class="glyphicon glyphicon-ok-sign"></span>
+                                Es sollte hier zu finden sein</a>
+                        </div>
+                        {% set currentNodeParentsLength = currentNodeParents | length - 1 %}
+                        <div class="col-lg-4 col-md-6 col-sm-12">
+                            <div class="btn-group" style="margin-top: 11px;">
+                                {%if currentNodeParentsLength >= 0%}
+                                    <a href="{{urlFor('/experiment', {PROJECTURL:project.url,ID:currentNodeParents[currentNodeParentsLength].ID,ITEMID:currentNodeParents[currentNodeParentsLength].itemID})}}" class="btn btn-default text-info">
+                                        <span class="glyphicon glyphicon-arrow-up"></span>
+                                        Ebene höher</a>
+                                    {%else%}
+                                    <a href="{{urlFor('/experiment',{PROJECTURL:project.url})}}" class="btn btn-default text-info">
+                                        <span class="glyphicon glyphicon-arrow-up"></span>
+                                        Ebene höher</a>
+                                    {%endif%}
+                                    <a href="{{urlFor('/skiptask', {PROJECTURL:project.url}) }}" class="btn btn-default text-warning">
+                                        <span class="glyphicon glyphicon-share-alt"></span>
+                                        Überspringen</a>
+                                    <a href="{{urlFor('/impressum')}}" target="_blank" class="btn btn-default text-info">
+                                        <span class="glyphicon glyphicon-question-sign"></span>
+                                        Impressum</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </nav>

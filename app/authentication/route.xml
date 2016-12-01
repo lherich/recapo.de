@@ -1,0 +1,65 @@
+<setting>
+    <errors>
+        <error>
+            <exception>Recapo\Exception\FailedAuthenticationByToken</exception>
+            <status>403</status>
+            <message>Der Gültikgietszeitraum des Token zur Authentifizierung scheint abgelaufen zu sein.</message>
+            <redirect>/</redirect>
+        </error>
+
+        <error>
+            <exception>Recapo\Exception\FailedAuthentication</exception>
+            <status>403</status>
+            <message>Leider stimmen die Zugangsdaten nicht.</message>
+            <redirect>/</redirect>
+        </error>
+
+        <error>
+            <exception>Recapo\Exception\Unauthorized</exception>
+            <status>403</status>
+            <message>Bitte melden Sie sich an, um diese Seite aufrufen zu können.</message>
+            <redirect>/</redirect>
+        </error>
+
+        <error>
+            <exception>Recapo\Exception\Forbidden</exception>
+            <status>403</status>
+            <message>Sie haben keine Berechtigung für diese Seite</message>
+        </error>
+    </errors>
+    <routes>
+        <route>
+            <name>/authentication/login</name>
+            <route>/backend/authentication/login</route>
+            <method>post</method>
+            <path>authentication/</path>
+            <php>login</php>
+        </route>
+
+        <route>
+            <name>/authentication/logout</name>
+            <route>/backend/authentication/logout</route>
+            <middleware>Authentication</middleware>
+            <method>get</method>
+            <path>authentication/</path>
+            <php>logout</php>
+        </route>
+
+        <route>
+            <name>/authentication/changePassword</name>
+            <route>/backend/authentication/changePassword</route>
+            <middleware>Authentication</middleware>
+            <method>post</method>
+            <path>authentication/</path>
+            <php>changePassword</php>
+        </route>
+
+        <route>
+            <name>/authentication/modal</name>
+            <route>/backend/authentication/modal</route>
+            <method>get</method>
+            <path>authentication/</path>
+            <tpl>modal</tpl>
+        </route>
+    </routes>
+</setting>

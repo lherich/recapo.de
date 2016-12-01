@@ -1,0 +1,65 @@
+{% include 'hooter/rcs/header.twig' %}
+
+<div class="container" style="padding-top: 5%;">
+    <div class="row">
+        <div class="col-md-12 column">
+
+            <form class="form-horizontal" role="form" action="{{ urlFor('/experimentdata', {PROJECTURL:project.url}) }}" method="post">
+                <div class="jumbotron">
+                    <h1>Recapo
+                        <small>
+                            <div class="label label-default">
+                                <span class="glyphicon glyphicon-comment"></span>
+                                Anleitung</div>
+                        </small>
+                    </h1>
+                    <h2>
+                        <small>{{project.name}}</small>
+                    </h2>
+                    <p>
+                        {{project.instructionText}}
+                    </p>
+                    <br/><br/>
+                    {%if project.probandForm == 1%}
+
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-primary">
+                                <div class="panel-title btn-group btn-group-justified">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class="btn btn-default">Persönliche Daten angeben(optional)
+                                        <span class="caret"></span>
+                                    </a>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse">
+                                    <div class="panel-body" style="padding: 50px;">
+
+                                        <div class="form-group">
+                                            <label for="email" class="control-label">E-Mail Adresse</label>
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="benutzer@example.org">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <label for="forename" class="control-label">Vorname</label>
+                                                    <input type="text" class="form-control" id="forename" name="forename" placeholder="Vorname">
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <label for="surname" class="control-label">Nachname</label>
+                                                    <input type="text" class="form-control" id="surname" name="surname" placeholder="Nachname">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {%endif%}
+                    </div>
+                    <button type="submit" class="btn btn-success btn-lg btn-block">Starte das Experiment</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    {% include 'hooter/rcs/footer.twig' %}

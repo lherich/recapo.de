@@ -1,0 +1,32 @@
+{% if flash | length > 0 %}
+    <aside>
+        <div class="container">
+            <div class="row">
+                {% for key, value in flash %}
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="alert alert-{{ key }} fade in">
+
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+                                <i class="glyphicon glyphicon-remove"></i>
+                            </button>
+                            <h4>Statusnachricht</h4>
+                            <p>
+                                {% if value is iterable %}
+                                    Es sind folgende Fehler aufgetreten:<br/>
+                                    <ul>
+                                        {% for item in value %}
+                                            <li>{{item}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% else %}
+                                    {{ value }}
+                                {% endif %}
+                            </p>
+                            <br/>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </aside>
+{% endif %}

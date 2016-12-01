@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">
+        <span class="glyphicon glyphicon-trash"></span>
+        Soll dieser Container wirklich gelöscht werden?</h4>
+</div>
+<div class="modal-body">
+    Soll der Container "<i>{{item.name}}</i>" wirklich gelöscht werden?<br/>
+    <br/>
+    <div class="form-group">
+        <div class="col-sm-4">
+            <button type="button" class="btn btn-default btn-group btn-group-justified" data-dismiss="modal">
+                <i class="glyphicon glyphicon-remove"></i>
+                Nicht löschen</button>
+        </div>
+        <div class="col-sm-offset-4 col-sm-4">
+            <a href="{{urlFor('/project/informationarchitecture/container/delete', {ID:project.ID,ITEMID:item.ID,CONFIRMED:" true"})}}" class="btn btn-danger btn-group btn-group-justified">
+                <i class="glyphicon glyphicon-trash"></i>
+                Container löschen</a>
+        </div>
+    </div>
+    <br/><br/>
+</div>

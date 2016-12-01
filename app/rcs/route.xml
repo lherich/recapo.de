@@ -1,0 +1,74 @@
+<setting>
+    <routes>
+        <route>
+            <name>/welcome</name>
+            <route>/:PROJECTURL</route>
+            <middleware>Experiment</middleware>
+            <middleware>LoadViewVariables</middleware>
+            <method>get</method>
+            <path>rcs/</path>
+            <tpl>welcome</tpl>
+            <php>welcome</php>
+        </route>
+
+        <route>
+            <name>/instruction</name>
+            <route>/:PROJECTURL/instruction</route>
+            <middleware>Experiment</middleware>
+            <middleware>LoadViewVariables</middleware>
+            <method>get</method>
+            <path>rcs/</path>
+            <tpl>instruction</tpl>
+            <php>instruction</php>
+        </route>
+
+        <route>
+            <name>/end</name>
+            <route>/:PROJECTURL/end</route>
+            <middleware>Experiment</middleware>
+            <middleware>LoadViewVariables</middleware>
+            <method>get</method>
+            <path>rcs/</path>
+            <tpl>end</tpl>
+        </route>
+
+        <route>
+            <name>/experimentdata</name>
+            <route>/:PROJECTURL/experimentdata</route>
+            <middleware>Experiment</middleware>
+            <middleware>LoadViewVariables</middleware>
+            <method>post</method>
+            <path>rcs/</path>
+            <php>experimentdata</php>
+        </route>
+        <route>
+            <name>/experiment</name>
+            <route>/:PROJECTURL/experiment(/:ID(/:ITEMID))</route>
+            <middleware>Experiment</middleware>
+            <middleware>LoadViewVariables</middleware>
+            <method>get</method>
+            <path>rcs/</path>
+            <php>experiment</php>
+            <tpl>experiment</tpl>
+            <js>experiment</js>
+        </route>
+
+        <route>
+            <name>/skiptask</name>
+            <route>/:PROJECTURL/skiptask</route>
+            <middleware>Experiment</middleware>
+            <method>get</method>
+            <path>rcs/</path>
+            <php>skiptask</php>
+        </route>
+
+        <route>
+            <name>/endtask</name>
+            <route>/:PROJECTURL/endtask/:ID/:ITEMID</route>
+            <middleware>Experiment</middleware>
+            <method>get</method>
+            <path>rcs/</path>
+            <php>endtask</php>
+        </route>
+    </routes>
+</setting>

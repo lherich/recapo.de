@@ -1,0 +1,102 @@
+{% include 'project/hooter/header.twig' %}
+
+<div class="tab-pane" id="section">
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <h2>
+                <span class="glyphicon glyphicon-export"></span>
+                Export</h2>
+        </div>
+        <div class="panel-body">
+
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Aufbau der Dateien</h3>
+                </div>
+                <div class="panel-body">
+                    Der Aufbau der exportibaren Daten wird auf der Seite
+                    <a href="{{urlFor('/help')}}">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                        Spezifikationen</a>
+                    beschrieben.
+                </div>
+            </div>
+            <br/>
+
+            <div class="list-group">
+                <h3>ReCaLys Exporte</h3>
+                <a href="{{urlFor('/project/exportReport',{ID:project.ID})}}" class="list-group-item">
+                    <h4 class="list-group-item-heading">
+                        <span class="glyphicon glyphicon-record"></span>
+                        Gesamtresultate exportieren (XML)</h4>
+                    <p class="list-group-item-text">Auswertung der gesamte Experimente als XML-Datei</p>
+                </a>
+                <a href="{{urlFor('/project/exportInformationarchitectureExtended',{ID:project.ID})}}" class="list-group-item">
+                    <h4 class="list-group-item-heading">
+                        <span class="glyphicon glyphicon-record"></span>
+                        Erweiterte IA exportieren (XML)</h4>
+                    <p class="list-group-item-text">Struktur der Informationsarchitektur nur mit Karten</p>
+                </a>
+                <!--
+                  <a href="{{urlFor('/project/export/file',{ID:project.ID,NAME:"ia_extended"})}}" class="list-group-item">
+                    <h4 class="list-group-item-heading"><span class="glyphicon glyphicon-list-alt"></span> Erweiterte IA exportieren (CSV)</h4>
+                    <p class="list-group-item-text">Struktur der Informationsarchitektur mit Karten und Container</p>
+                  </a>
+//-->
+                <hr/>
+                <h3>Exporte die wieder importiert werden könne</h3>
+                <a href="{{urlFor('/project/export/file',{ID:project.ID,NAME:" ia"})}}" class="list-group-item">
+                    <h4 class="list-group-item-heading">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                        IA exportieren (CSV)</h4>
+                    <p class="list-group-item-text">Struktur der Informationsarchitektur mit Karten und Container</p>
+                </a>
+                <a href="{{urlFor('/project/export/file',{ID:project.ID,NAME:" item"})}}" class="list-group-item">
+                    <h4 class="list-group-item-heading">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                        Karten exportieren (CSV)</h4>
+                    <p class="list-group-item-text">Liste der vorhandenen Karten</p>
+                </a>
+                <a href="{{urlFor('/project/export/file',{ID:project.ID,NAME:" container"})}}" class="list-group-item">
+                    <h4 class="list-group-item-heading">
+                        <span class="glyphicon glyphicon-list-alt"></span>
+                        Container exportieren (CSV)</h4>
+                    <p class="list-group-item-text">Container mit zugehörigen Karten</p>
+                </a>
+                <a href="{{urlFor('/project/export/file',{ID:project.ID,NAME:" section"})}}" class="list-group-item">
+                    <h4 class="list-group-item-heading">
+                        <span class="glyphicon glyphicon-list"></span>
+                        Sektionen exportieren (CSV)</h4>
+                    <p class="list-group-item-text">Liste der aktivierten Sektionen</p>
+                </a>
+                <a href="{{urlFor('/project/export/file',{ID:project.ID,NAME:" task"})}}" class="list-group-item">
+                    <h4 class="list-group-item-heading">
+                        <span class="glyphicon glyphicon-tasks"></span>
+                        Aufgaben exportieren (CSV)</h4>
+                    <p class="list-group-item-text">Aufgaben mit zugehöriger Zielkarte</p>
+                </a>
+                <hr/>
+                <h3>Informelle Exporte</h3>
+                <a href="{{urlFor('/project/export/file',{ID:project.ID,NAME:" proband"})}}" class="list-group-item">
+                    <h4 class="list-group-item-heading">
+                        <span class="glyphicon glyphicon-user"></span>
+                        Probanden exportieren (CSV)</h4>
+                    <p class="list-group-item-text">Probanden mit ID, E-Mail Adresse, Vor- und Nachname</p>
+                </a>
+                <a href="{{urlFor('/project/export/file',{ID:project.ID,NAME:" result"})}}" class="list-group-item">
+                    <h4 class="list-group-item-heading">
+                        <span class="glyphicon glyphicon-record"></span>
+                        Reportübersicht exportieren (CSV)</h4>
+                    <p class="list-group-item-text">Kurzübersicht der Resultate mit ID, Startzeit, Endzeit und Dauer</p>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var REQUIREJS = "{{urlFor('/js/project/section/section')}}";
+</script>
+{% include 'project/hooter/footer.twig' %}
