@@ -1,0 +1,163 @@
+<settings>
+  <errors>
+    <error>
+      <exception>Exception</exception>
+      <status>500</status>
+      <message>Es ist leider ein unbekannter Fehler aufgetreten</message>
+    </error>
+    <error>
+      <exception>ErrorException</exception>
+      <status>500</status>
+      <message>Es ist leider ein unbekannter Fehler aufgetreten</message>
+    </error>
+    <error>
+      <exception>LogicException</exception>
+      <status>500</status>
+      <message>Es ist leider ein unbekannter Fehler aufgetreten</message>
+    </error>
+    <error>
+      <exception>BadFunctionCallException</exception>
+      <status>500</status>
+      <message>Es ist leider ein unbekannter Fehler aufgetreten</message>
+    </error>
+    <error>
+      <exception>BadMethodCallException</exception>
+      <status>500</status>
+      <message>Es ist leider ein unbekannter Fehler aufgetreten</message>
+    </error>
+    <error>
+      <exception>DomainException</exception>
+      <status>500</status>
+      <message>Es ist leider ein unbekannter Fehler aufgetreten</message>
+    </error>
+    <error>
+      <exception>InvalidArgumentException</exception>
+      <status>500</status>
+      <message>Es ist leider ein unbekannter Fehler aufgetreten</message>
+    </error>
+    <error>
+      <exception>LengthException</exception>
+      <status>500</status>
+      <message>Es ist leider ein unbekannter Fehler aufgetreten</message>
+    </error>
+    <error>
+      <exception>OutOfRangeException</exception>
+      <status>500</status>
+      <message>Es ist leider ein unbekannter Fehler aufgetreten</message>
+    </error>
+    <error>
+      <exception>RuntimeException</exception>
+      <status>500</status>
+      <message>Es ist leider ein unbekannter Fehler aufgetreten</message>
+    </error>
+    <error>
+      <exception>OutOfBoundsException</exception>
+      <status>500</status>
+      <message>Es ist leider ein unbekannter Fehler aufgetreten</message>
+    </error>
+    <error>
+      <exception>OverflowException</exception>
+      <status>500</status>
+      <message>Es ist leider ein unbekannter Fehler aufgetreten</message>
+    </error>
+    <error>
+      <exception>RangeException</exception>
+      <status>500</status>
+      <message>Es ist leider ein unbekannter Fehler aufgetreten</message>
+    </error>
+    <error>
+      <exception>UnderflowException</exception>
+      <status>500</status>
+      <message>Es ist leider ein unbekannter Fehler aufgetreten</message>
+    </error>
+    <error>
+      <exception>UnexpectedValueException</exception>
+      <status>500</status>
+      <message>Es fehlen Parameter, oder sie sind ungültige.</message>
+    </error>
+  </errors>
+
+  <conditions>
+    <ID>[0-9]{1,11}</ID>
+    <START>[0-9]{1,11}</START>
+    <OFFSET>[0-9]{1,11}</OFFSET>
+  </conditions>
+
+  <routes>
+    <route>
+      <name>/</name>
+      <route>/</route>
+      <method>get</method>
+      <middleware>LoadDynamicPage</middleware>
+      <middleware>LoadViewVariables</middleware>
+      <middleware>LoadViewAuthenticationVariables</middleware>
+      <middleware>LoadViewProjectVariables</middleware>
+      <path>index/</path>
+      <js>index</js>
+      <tpl>index</tpl>
+    </route>
+
+    <route>
+      <name>/notfound</name>
+      <route>/backend/notfound</route>
+      <middleware>LoadViewVariables</middleware>
+      <middleware>LoadViewAuthenticationVariables</middleware>
+      <method>get</method>
+      <path>notfound/</path>
+      <tpl>notfound</tpl>
+    </route>
+
+    <route>
+      <name>/help</name>
+      <route>/backend/help</route>
+      <middleware>LoadViewVariables</middleware>
+      <middleware>LoadViewAuthenticationVariables</middleware>
+      <middleware>LoadViewProjectVariables</middleware>
+      <method>get</method>
+      <path>help/</path>
+      <php>help</php>
+      <tpl>help</tpl>
+    </route>
+    
+    <route>
+      <name>/impressum</name>
+      <route>/backend/impressum</route>
+      <middleware>LoadViewVariables</middleware>
+      <middleware>LoadViewAuthenticationVariables</middleware>
+      <middleware>LoadViewProjectVariables</middleware>
+      <method>get</method>
+      <path>impressum/</path>
+      <tpl>impressum</tpl>
+    </route>
+
+    
+    <route>
+      <name>/license</name>
+      <route>/backend/license</route>
+      <middleware>LoadDynamicPage</middleware>
+      <middleware>LoadViewVariables</middleware>
+      <method>get</method>
+      <path>impressum/</path>
+      <tpl>impressum</tpl>
+    </route>
+    
+    <route>
+      <name>/privacy</name>
+      <route>/backend/privacy</route>
+      <middleware>LoadViewVariables</middleware>
+      <middleware>LoadViewAuthenticationVariables</middleware>
+      <middleware>LoadViewProjectVariables</middleware>
+      <method>get</method>
+      <path>privacy/</path>
+      <tpl>privacy</tpl>
+    </route>
+    
+    <file>authentication/route.xml</file>
+    <file>registration/route.xml</file>
+    <file>projects/route.xml</file>
+    <file>project/route.xml</file>
+    <file>profile/route.xml</file>
+    <file>rcs/route.xml</file>
+
+  </routes>
+</settings>
